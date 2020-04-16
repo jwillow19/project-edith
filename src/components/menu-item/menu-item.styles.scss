@@ -26,7 +26,9 @@
   }
 
   &.large {
-    height: 420px;
+    // REMINDER - adjust width so that only two large images are in one row
+    height: 620px;
+    width: 580px;
   }
 
   &:first-child {
@@ -37,7 +39,7 @@
     margin-left: 7.5px;
   }
 
-  // force content onto background image
+  // REMINDER - force content onto background image
   // separated background-image from content to have different transformation on hover
   .background-image {
     width: 100%;
