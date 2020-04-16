@@ -1,4 +1,5 @@
 import React from 'react';
+import './homepage.styles.scss';
 // import PropTypes from 'prop-types';
 
 const Home = (props) => {
@@ -15,7 +16,9 @@ const Home = (props) => {
             <h1 className='title'>Men</h1>
             <span className='subtitle'>SHOP NOW</span>
           </div>
+        </div>
 
+        <div className='menu-item'>
           <div className='content'>
             <h1 className='title'>Eyeglasses</h1>
             <span className='subtitle'>SHOP NOW</span>
