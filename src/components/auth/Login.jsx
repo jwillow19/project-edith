@@ -10,10 +10,15 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
+import { signInWithGoogle } from '../../firebase/db';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#424242',
+    },
+    secondary: {
+      main: '#2962ff',
     },
   },
 });
@@ -35,9 +40,16 @@ const useStyles = (theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  checkbox: {
+    margin: '10px',
+  },
+  text: {
+    fontWeight: '100',
+  },
   submit: {
     minWidth: '140px',
     margin: 'auto',
+    marginTop: '20px',
     marginBottom: '20px',
     display: 'flex',
     alignItems: 'center',
@@ -120,31 +132,42 @@ class Login extends React.Component {
                     style={{ width: '20vw' }}
                   />
                 </Grid>
+                <div style={{ margin: '10px' }}></div>
 
                 <FormControlLabel
                   control={<Checkbox value='remember' color='primary' />}
                   label='Remember me'
                 />
-                <Button
-                  type='submit'
-                  size='large'
-                  color='primary'
-                  variant='contained'
-                  //   fullWidth
-                  onSubmit={this.handleSubmit}
-                  className={classes.submit}
-                >
-                  Sign In
-                </Button>
+
+                <div style={{ display: 'flex' }}>
+                  <Button
+                    type='submit'
+                    color='primary'
+                    variant='contained'
+                    onSubmit={this.handleSubmit}
+                    className={classes.submit}
+                  >
+                    Sign In
+                  </Button>
+                  <Button
+                    color='secondary'
+                    variant='outlined'
+                    onClick={signInWithGoogle}
+                    className={classes.submit}
+                  >
+                    Sign in with Google
+                  </Button>
+                </div>
+
                 <Grid container>
                   <Grid item xs>
                     <Link to='/' variant='body2'>
-                      <h className='text'>Forgot password?</h>
+                      <p>Forgot password?</p>
                     </Link>
                   </Grid>
                   <Grid item xs>
                     <Link to='/register' variant='body2'>
-                      Don't have an account?
+                      <p className={classes.text}>Don't have an account?</p>
                     </Link>
                   </Grid>
                 </Grid>

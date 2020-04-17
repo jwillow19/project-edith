@@ -9,3 +9,12 @@ a {
   text-decoration: none;
   color: black;
 }
+
+/* p {
+  font-weight: 200;
+  font-size: medium;
+} */
+
+* {
+  box-sizing: border-box;
+}

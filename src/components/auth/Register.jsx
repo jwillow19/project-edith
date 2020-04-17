@@ -37,6 +37,7 @@ const useStyles = (theme) => ({
   submit: {
     minWidth: '140px',
     margin: 'auto',
+    marginTop: '20px',
     marginBottom: '20px',
     display: 'flex',
     alignItems: 'center',
@@ -49,8 +50,10 @@ class Register extends React.Component {
     super(props);
 
     this.state = {
+      name: '',
       email: '',
-      password: '',
+      password1: '',
+      password2: '',
     };
   }
 
@@ -66,7 +69,7 @@ class Register extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { name, email, password1, password2 } = this.state;
     const { classes } = this.props;
     return (
       <ThemeProvider theme={theme}>
@@ -97,10 +100,25 @@ class Register extends React.Component {
                     onChange={this.handleOnChange}
                     margin='normal'
                     required
+                    type='text'
+                    id='name'
+                    name='name'
+                    value={name}
+                    autoComplete='name'
+                    autoFocus
+                    label='Name'
+                    style={{ width: '20vw' }}
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    onChange={this.handleOnChange}
+                    margin='normal'
+                    required
+                    type='email'
                     id='email'
                     name='email'
                     value={email}
-                    autoComplete='email'
                     autoFocus
                     label='Email'
                     style={{ width: '20vw' }}
@@ -115,12 +133,25 @@ class Register extends React.Component {
                     label='Password'
                     type='password'
                     id='password'
-                    value={password}
-                    autoComplete='current-password'
+                    autoFocus
+                    value={password1}
                     style={{ width: '20vw' }}
                   />
                 </Grid>
-
+                <Grid item>
+                  <TextField
+                    onChange={this.handleOnChange}
+                    margin='normal'
+                    required
+                    id='password2'
+                    name='password2'
+                    value={password2}
+                    type='password'
+                    autoFocus
+                    label='Confirm Password'
+                    style={{ width: '20vw' }}
+                  />
+                </Grid>
                 <Button
                   type='submit'
                   size='large'
