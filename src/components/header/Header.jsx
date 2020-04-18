@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/db';
 import './header.styles.scss';
 import logo from '../../assets/refine-logo.png';
 import { connect } from 'react-redux';
+import CartIcon from '../cart/CartIcon';
+import CartDropdown from '../cart/CartDropdown';
 
-const Header = ({ user }) => {
+const Header = ({ user, cart }) => {
   const { currentUser } = user;
   return (
     <div className='header'>
@@ -30,13 +33,22 @@ const Header = ({ user }) => {
         <Link className='option' to='/cart'>
           CONTACT
         </Link>
+
+        <CartIcon />
       </div>
+      {cart.hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
+Header.propTypes = {
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
   user: state.user,
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps)(Header);
