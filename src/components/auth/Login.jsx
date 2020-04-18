@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -11,6 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/db';
 import { signInWithGoogle } from '../../firebase/db';
+import { connect } from 'react-redux';
+import { loginWithEmailAndPassword } from '../../redux/actions/user';
 
 const theme = createMuiTheme({
   palette: {
@@ -72,14 +75,14 @@ class Login extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-
-    try {
-      // firebase.auth method to sign in, search unique email identifier and verify password
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({ email: '', password: '' });
-    } catch (err) {
-      console.error(err);
-    }
+    this.props.loginWithEmailAndPassword(email, password);
+    // try {
+    //   // firebase.auth method to sign in, search unique email identifier and verify password
+    //   await auth.signInWithEmailAndPassword(email, password);
+    //   this.setState({ email: '', password: '' });
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
   render() {
@@ -187,4 +190,9 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(useStyles)(Login);
+Login.propTypes = {
+  loginWithEmailAndPassword: PropTypes.func.isRequired,
+};
+export default connect(null, { loginWithEmailAndPassword })(
+  withStyles(useStyles)(Login)
+);

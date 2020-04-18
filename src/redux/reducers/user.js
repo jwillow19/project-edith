@@ -6,28 +6,31 @@ import {
   USER_LOADED,
   AUTH_ERR,
   LOGOUT,
+  SET_USER,
 } from '../actions/types';
 
-const initiaState = {
-  isAuthenticated: false,
+const initialState = {
   loading: true,
-  user: null,
+  currentUser: null,
 };
 
-export default function (state = initiaState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
-    case REGISTER_SUCCESS:
+    case SET_USER:
       return {
         ...state,
-        isAuthenticated: true,
         loading: false,
-        user: payload,
+        currentUser: payload,
+      };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        currentUser: payload,
       };
     default:
-      return {
-        ...state,
-      };
+      return state;
   }
 }

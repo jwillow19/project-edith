@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
@@ -10,6 +11,8 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link, Redirect } from 'react-router-dom';
 import { auth } from '../../firebase/db';
 import { createUserProfile } from '../../firebase/db';
+import { register } from '../../redux/actions/user';
+import { connect } from 'react-redux';
 
 const theme = createMuiTheme({
   palette: {
@@ -72,26 +75,14 @@ class Register extends React.Component {
       alert('Passwords do not match');
       return;
     }
-
-    try {
-      // create user document => trigger authStateChange in App.js => triggers createUserProfile()
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password1
-      );
-      // calling createUserProfile here to store the display name
-      await createUserProfile(user, { name });
-
-      // clear form
-      this.setState({
-        name: '',
-        email: '',
-        password1: '',
-        password2: '',
-      });
-    } catch (err) {
-      console.error(err);
-    }
+    // @action - register
+    this.props.register(name, email, password1);
+    this.setState({
+      name: '',
+      email: '',
+      password1: '',
+      password2: '',
+    });
   };
 
   render() {
@@ -200,5 +191,8 @@ class Register extends React.Component {
     );
   }
 }
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+};
 
-export default withStyles(useStyles)(Register);
+export default connect(null, { register })(withStyles(useStyles)(Register));
