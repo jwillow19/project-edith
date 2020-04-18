@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
+import { auth } from '../../firebase/db';
 import { signInWithGoogle } from '../../firebase/db';
 
 const theme = createMuiTheme({
@@ -47,7 +47,7 @@ const useStyles = (theme) => ({
     fontWeight: '100',
   },
   submit: {
-    minWidth: '140px',
+    minWidth: '200px',
     margin: 'auto',
     marginTop: '20px',
     marginBottom: '20px',
@@ -67,14 +67,19 @@ class Login extends React.Component {
     };
   }
   handleOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      console.log(this.state)
-    );
+    this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
+    const { email, password } = this.state;
 
-    this.setState({ email: '', password: '' });
+    try {
+      // firebase.auth method to sign in, search unique email identifier and verify password
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   render() {
@@ -103,7 +108,11 @@ class Login extends React.Component {
                 Sign in
               </Typography>
 
-              <form className={classes.form} noValidate>
+              <form
+                className={classes.form}
+                onSubmit={this.handleSubmit}
+                noValidate
+              >
                 <Grid item>
                   <TextField
                     onChange={this.handleOnChange}
@@ -114,11 +123,11 @@ class Login extends React.Component {
                     value={email}
                     autoComplete='email'
                     autoFocus
+                    fullWidth
                     label='Email'
-                    style={{ width: '20vw' }}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item>
                   <TextField
                     onChange={this.handleOnChange}
                     margin='normal'
@@ -128,10 +137,11 @@ class Login extends React.Component {
                     type='password'
                     id='password'
                     value={password}
+                    fullWidth
                     autoComplete='current-password'
-                    style={{ width: '20vw' }}
                   />
                 </Grid>
+
                 <div style={{ margin: '10px' }}></div>
 
                 <FormControlLabel
@@ -139,25 +149,22 @@ class Login extends React.Component {
                   label='Remember me'
                 />
 
-                <div style={{ display: 'flex' }}>
-                  <Button
-                    type='submit'
-                    color='primary'
-                    variant='contained'
-                    onSubmit={this.handleSubmit}
-                    className={classes.submit}
-                  >
-                    Sign In
-                  </Button>
-                  <Button
-                    color='secondary'
-                    variant='outlined'
-                    onClick={signInWithGoogle}
-                    className={classes.submit}
-                  >
-                    Sign in with Google
-                  </Button>
-                </div>
+                <Button
+                  type='submit'
+                  color='primary'
+                  variant='contained'
+                  className={classes.submit}
+                >
+                  Sign In
+                </Button>
+                <Button
+                  color='secondary'
+                  variant='outlined'
+                  onClick={signInWithGoogle}
+                  className={classes.submit}
+                >
+                  Sign in with Google
+                </Button>
 
                 <Grid container>
                   <Grid item xs>

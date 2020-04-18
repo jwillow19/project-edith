@@ -7,7 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { auth } from '../../firebase/db';
+import { createUserProfile } from '../../firebase/db';
 
 const theme = createMuiTheme({
   palette: {
@@ -58,19 +60,44 @@ class Register extends React.Component {
   }
 
   handleOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value }, () =>
-      console.log(this.state)
-    );
+    this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = (e) => {
+
+  handleSubmit = async (e) => {
     e.preventDefault();
 
-    this.setState({ email: '', password: '' });
+    const { name, email, password1, password2 } = this.state;
+
+    if (password1 !== password2) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      // create user document => trigger authStateChange in App.js => triggers createUserProfile()
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password1
+      );
+      // calling createUserProfile here to store the display name
+      await createUserProfile(user, { name });
+
+      // clear form
+      this.setState({
+        name: '',
+        email: '',
+        password1: '',
+        password2: '',
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   render() {
     const { name, email, password1, password2 } = this.state;
     const { classes } = this.props;
+
     return (
       <ThemeProvider theme={theme}>
         <Grid
@@ -94,7 +121,11 @@ class Register extends React.Component {
                 Create an account
               </Typography>
 
-              <form className={classes.form} noValidate>
+              <form
+                className={classes.form}
+                onSubmit={this.handleSubmit}
+                noValidate
+              >
                 <Grid item>
                   <TextField
                     onChange={this.handleOnChange}
@@ -129,10 +160,10 @@ class Register extends React.Component {
                     onChange={this.handleOnChange}
                     margin='normal'
                     required
-                    name='password'
+                    name='password1'
                     label='Password'
                     type='password'
-                    id='password'
+                    id='password1'
                     autoFocus
                     value={password1}
                     style={{ width: '20vw' }}
@@ -157,7 +188,6 @@ class Register extends React.Component {
                   size='large'
                   color='primary'
                   variant='contained'
-                  onSubmit={this.handleSubmit}
                   className={classes.submit}
                 >
                   Create

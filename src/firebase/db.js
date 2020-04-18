@@ -16,6 +16,35 @@ const firebaseConfig = {
   measurementId: 'G-SSJD9HZBV8',
 };
 
+// NOTE - Create user profiles to DB - userAuth obj from auth.authStateChanged
+export const createUserProfile = async (userAuth, additionData) => {
+  // logout returns null - if(logout) do nothing
+  if (!userAuth) return;
+
+  // reference to document location
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+  // get snapshot of document
+  const snapshot = userRef.get();
+  // If snapshot of user DNE - create instance
+  if (!snapshot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionData,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  return userRef;
+};
+
 firebase.initializeApp(firebaseConfig);
 
 // For auth and using the db
