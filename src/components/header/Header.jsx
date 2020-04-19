@@ -7,9 +7,12 @@ import logo from '../../assets/refine-logo.png';
 import { connect } from 'react-redux';
 import CartIcon from '../cart/CartIcon';
 import CartDropdown from '../cart/CartDropdown';
+import { createStructuredSelector } from 'reselect';
 
-const Header = ({ user, cart }) => {
-  const { currentUser } = user;
+import { selectCartHidden } from '../../redux/selectors/cart.selector';
+import { selectCurrentUser } from '../../redux/selectors/user.selector';
+
+const Header = ({ currentUser, hidden }) => {
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -36,19 +39,19 @@ const Header = ({ user, cart }) => {
 
         <CartIcon />
       </div>
-      {cart.hidden ? null : <CartDropdown />}
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
 Header.propTypes = {
-  user: PropTypes.object.isRequired,
-  cart: PropTypes.object.isRequired,
+  currentUser: PropTypes.object.isRequired,
+  hidden: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  cart: state.cart,
+const mapStateToProps = createStructuredSelector({
+  hidden: selectCartHidden,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(Header);

@@ -1,22 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Home from './page/home/Home';
 import Shop from './page/shop/Shop';
+import Checkout from './page/checkout/Checkout';
+
 import Header from './components/header/Header';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from 'react-router-dom';
+
 import { auth } from './firebase/db';
 import { createUserProfile } from './firebase/db';
-import { Provider } from 'react-redux';
-import store from './redux/store';
 import { connect } from 'react-redux';
+
 import { setUser } from './redux/actions/user';
+
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/selectors/user.selector';
 
 import './App.css';
 
@@ -62,7 +69,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { currentUser } = this.props;
 
     return (
       <Router>
@@ -73,16 +80,13 @@ class App extends React.Component {
             <Route path='/shop' component={Shop} />
             <Route
               path='/login'
-              render={() =>
-                user.currentUser ? <Redirect to='/' /> : <Login />
-              }
+              render={() => (currentUser ? <Redirect to='/' /> : <Login />)}
             />
             <Route
               path='/register'
-              render={() =>
-                user.currentUser ? <Redirect to='/' /> : <Register />
-              }
+              render={() => (currentUser ? <Redirect to='/' /> : <Register />)}
             />
+            <Route exact path='/checkout' component={Checkout} />
           </Switch>
         </div>
       </Router>
@@ -90,8 +94,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 // NOTE: how you would dispatch without redux-thunk
