@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/db';
+
 import { signInWithGoogle } from '../../firebase/db';
 import { connect } from 'react-redux';
 import { loginWithEmailAndPassword } from '../../redux/actions/user';

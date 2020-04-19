@@ -3,13 +3,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import './cart-dropdown.styles.scss';
 import { connect } from 'react-redux';
-import { handleCartClick } from '../../redux/actions/cart';
+// import { handleCartClick } from '../../redux/actions/cart';
 
-const CartDropdown = ({ handleCartClick }) => {
+const CartDropdown = ({}) => {
   return (
     <div className='cart-dropdown'>
       <div className='cart-items'></div>
-      <Button onClick={handleCartClick}>CHECKOUT</Button>
+      <Button>CHECKOUT</Button>
     </div>
   );
 };
@@ -20,4 +20,4 @@ const CartDropdown = ({ handleCartClick }) => {
 // const mapStateToProps = (state) => ({
 //   cart: state.cart,
 // });
-export default connect(null, { handleCartClick })(CartDropdown);
+export default connect(null, {})(CartDropdown);

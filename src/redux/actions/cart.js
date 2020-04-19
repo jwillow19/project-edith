@@ -1,8 +1,8 @@
-import { CLICK_CART } from './types';
+import { TOGGLE_CART } from './types';
 
 // @action - button onClick triggers action
-export const handleCartClick = () => (dispatch) => {
+export const toggleCart = () => (dispatch) => {
   dispatch({
-    type: CLICK_CART,
+    type: TOGGLE_CART,
   });
 };
