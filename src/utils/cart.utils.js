@@ -23,3 +23,38 @@ export const sumQuantity = (cartItems) => {
   }, 0);
   return sum;
 };
+
+//removes cartItem instance from cartItems array completely
+export const removeItemFromCart = (cartItems, itemToRemove) => {
+  const newCartItem = cartItems.filter(
+    (cartItem) => cartItem.id !== itemToRemove.id
+  );
+  return newCartItem;
+};
+
+//@decrease item quantity by one
+export const decreaseItemCountByOne = (cartItems, itemToDecrease) => {
+  const itemToModify = cartItems.find(
+    (cartItem) => cartItem.id == itemToDecrease.id
+  );
+  // case: if quantity is 1, remove instance completely from cart
+  if (itemToModify.quantity == 1) {
+    return removeItemFromCart(cartItems, itemToModify);
+  }
+  // case: if quantity is >1, map through array, find the matching item, modify the quantity of that item and return the item state
+  return cartItems.map((cartItem) =>
+    cartItem.id == itemToDecrease.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : { ...cartItem }
+  );
+};
+
+//@incrase item quantity by one
+export const IncreaseItemCountByOne = (cartItems, itemToIncrease) => {
+  // [NOTE] - map through array, find the matching item, modify the quantity of that item and return the item state
+  return cartItems.map((cartItem) =>
+    cartItem.id == itemToIncrease.id
+      ? { ...cartItem, quantity: cartItem.quantity + 1 }
+      : { ...cartItem }
+  );
+};

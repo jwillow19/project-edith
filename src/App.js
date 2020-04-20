@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Home from './page/home/Home';
 import Shop from './page/shop/Shop';
-import Checkout from './page/checkout/Checkout';
+import Checkout from './components/checkout/Checkout';
 
 import Header from './components/header/Header';
 import Login from './components/auth/Login';
