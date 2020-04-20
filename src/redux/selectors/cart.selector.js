@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-// NOTE- this is an 'input selector' (selectors that return a piece of the state)
+// NOTE- this is an 'input-selector' (selectors that return a piece of the state)
 const selectCart = (state) => state.cart;
 
 // NOTE- these are transforms of input-selectors, selectors that select a part of the state

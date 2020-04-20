@@ -7,7 +7,7 @@ const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => {
     // history.push(matchUrl+linkUrl) to new page
     <div
       className={`menu-item ${size}`}
-      onClick={(e) => history.push(`${match}${linkUrl}`)}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
     >
       <div
         className='background-image'
