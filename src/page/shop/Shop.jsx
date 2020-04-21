@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import CollectionsOverview from '../../components/collections/CollectionsOverview';
-import Collection from '../Collection/Collection';
+import Collection from '../collection/Collection';
+import ProductItem from '../../page/product/ProductItem';
 
 const Shop = ({ match }) => {
   // console.log(match);
@@ -9,6 +10,10 @@ const Shop = ({ match }) => {
     <div>
       <Route exact path={`${match.path}`} component={CollectionsOverview} />
       <Route path={`${match.path}/:collectionId`} component={Collection} />
+      <Route
+        path={`${match.path}/:collectionId/:productId`}
+        component={ProductItem}
+      />
     </div>
   );
 };

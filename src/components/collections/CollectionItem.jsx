@@ -3,14 +3,21 @@ import PropTypes from 'prop-types';
 import CustomButton from '../custom-button/CustomButton';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/actions/cart';
-
+import { withRouter, Route, Redirect } from 'react-router-dom';
+import Product from '../../page/product/Product';
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, addItem }) => {
-  const { name, imageUrl, price } = item;
+const CollectionItem = ({ item, addItem, match, history }) => {
+  const { name, imageUrl, price, linkUrl } = item;
+
+  // <Route exact path={`${match.url}/:productId`} component={Product} />
 
   return (
-    <div className='collection-item'>
+    //
+    <div
+      className='collection-item'
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <div className='image' style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className='collection-footer'>
         <span className='name'>{name}</span>
@@ -27,4 +34,4 @@ CollectionItem.propTypes = {
   addItem: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addItem })(CollectionItem);
+export default connect(null, { addItem })(withRouter(CollectionItem));

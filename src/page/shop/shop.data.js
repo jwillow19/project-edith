@@ -10,6 +10,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/ZYW3VTp/brown-brim.png',
         imageUrl: '/images/shop-img/hats/brown-brim.png',
         price: 25,
+        linkUrl: '/brown-brim',
       },
       {
         id: 2,
@@ -17,6 +18,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/ypkgK0X/blue-beanie.png',
         imageUrl: '/images/shop-img/hats/blue-beanie.png',
         price: 18,
+        linkUrl: '/blue-beanie',
       },
       {
         id: 3,
@@ -24,6 +26,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/QdJwgmp/brown-cowboy.png',
         imageUrl: '/images/shop-img/hats/brown-cowboy.png',
         price: 35,
+        linkUrl: '/brown-cowboy',
       },
       {
         id: 4,
@@ -31,6 +34,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/RjBLWxB/grey-brim.png',
         imageUrl: '/images/shop-img/hats/grey-brim.png',
         price: 25,
+        linkUrl: '/grey-brim',
       },
       {
         id: 5,
@@ -38,6 +42,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/YTjW3vF/green-beanie.png',
         imageUrl: '/images/shop-img/hats/green-beanie.png',
         price: 18,
+        linkUrl: '/green-beanie',
       },
       {
         id: 6,
@@ -45,6 +50,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/rKBDvJX/palm-tree-cap.png',
         imageUrl: '/images/shop-img/hats/palm-tree-cap.png',
         price: 14,
+        linkUrl: '/palm-tree-cap',
       },
       {
         id: 7,
@@ -52,6 +58,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/bLB646Z/red-beanie.png',
         imageUrl: '/images/shop-img/hats/red-beanie.png',
         price: 18,
+        linkUrl: '/red-beanie',
       },
       {
         id: 8,
@@ -59,6 +66,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/1f2nWMM/wolf-cap.png',
         imageUrl: '/images/shop-img/hats/wolf-cap.png',
         price: 14,
+        linkUrl: '/wolf-cap',
       },
       {
         id: 9,
@@ -66,6 +74,7 @@ const SHOP_DATA = {
         // imageUrl: 'https://i.ibb.co/X2VJP2W/blue-snapback.png',
         imageUrl: '/images/shop-img/hats/blue-snapback.png',
         price: 16,
+        linkUrl: '/blue-snapback',
       },
     ],
   },

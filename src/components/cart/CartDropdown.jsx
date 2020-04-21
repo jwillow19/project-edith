@@ -35,7 +35,7 @@ const CartDropdown = ({ cartItems, history, toggleCart }) => {
 };
 
 CartDropdown.propTypes = {
-  cartItems: PropTypes.object.isRequired,
+  cartItems: PropTypes.array.isRequired,
   toggleCart: PropTypes.func.isRequired,
 };
 const mapStateToProps = createStructuredSelector({

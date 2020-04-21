@@ -18,7 +18,7 @@ const DirectoryMenu = ({ sections }) => {
 };
 
 DirectoryMenu.propTypes = {
-  directory: PropTypes.object.isRequired,
+  sections: PropTypes.array.isRequired,
 };
 const mapStateToProps = createStructuredSelector({
   sections: selectDirectorySections,
