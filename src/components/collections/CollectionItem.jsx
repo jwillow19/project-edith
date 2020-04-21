@@ -3,20 +3,29 @@ import PropTypes from 'prop-types';
 import CustomButton from '../custom-button/CustomButton';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/actions/cart';
-import { withRouter, Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, addItem, match, history }) => {
+const CollectionItem = ({ item, addItem, routeName, match, history }) => {
   const { name, imageUrl, price, linkUrl } = item;
+  console.log(match);
 
-  // <Route exact path={`${match.url}/:productId`} component={Product} />
+  // [NOTE] function checks where the currentRoute is
+  const handleClick = () => {
+    // case: currentRoute is collection page (eg. /shop/hats)
+    if (match.url.split('/')[-1] == routeName) {
+      history.push(`${match.url}${linkUrl}`);
+    } else {
+      // case: currentRoute is in CollectionOverview (eg. /shop)
+      history.push(`${match.url}/${routeName}${linkUrl}`);
+    }
+  };
+
+  // () => history.push(`${match.url}${linkUrl}`)
 
   return (
     //
-    <div
-      className='collection-item'
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
-    >
+    <div className='collection-item' onClick={() => handleClick()}>
       <div className='image' style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className='collection-footer'>
         <span className='name'>{name}</span>

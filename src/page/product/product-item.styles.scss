@@ -1,12 +1,27 @@
 .product-container {
   display: flex;
-  flex-direction: column;
 
-  .title {
-    font-size: 38px;
-    margin: 0 auto 30px;
+  .description-container {
+    font-size: 16px;
+    width: 33vw;
   }
 
+  .image {
+    width: 33vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .add-to-column {
+    width: auto;
+
+    .price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .items {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
