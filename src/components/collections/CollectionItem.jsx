@@ -4,7 +4,6 @@ import CustomButton from '../custom-button/CustomButton';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/actions/cart';
 import { withRouter, Route, Redirect } from 'react-router-dom';
-import Product from '../../page/product/Product';
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, addItem, match, history }) => {

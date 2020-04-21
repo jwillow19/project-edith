@@ -1,9 +1,14 @@
 import React from 'react';
-import './product-styles.scss';
+import './product-item.styles.scss';
 import { connect } from 'react-redux';
+import {
+  selectProduct,
+  selectCollection,
+} from '../../redux/selectors/shop.selector';
 
-const Product = ({ match }) => {
-  console.log(match);
+const ProductItem = ({ match, collection, item }) => {
+  console.log(collection);
+  console.log(item);
   return (
     <div className='product-container'>
       <div className='description-column'>DESCRIPTION</div>
@@ -13,8 +18,15 @@ const Product = ({ match }) => {
   );
 };
 
-// const mapStateToProps = (state, ownProps) => ({
-//   product: selectProduct(ownProps)(state),
-// });
-
-export default connect()(Product);
+const mapStateToProps = (state, ownProps) => ({
+  collection: selectCollection(ownProps.match.params.collectionId)(state),
+  item: selectProduct(
+    ownProps.match.params.productId,
+    ownProps.match.params.collectionId
+  )(state),
+  //   item: selectorProduct(ownProps.match.params.productId)(
+  //     ownProps.match.params.collectionId
+  //   )(state),
+});
+export default connect(mapStateToProps)(ProductItem);
+// export default ProductItem;

@@ -25,3 +25,9 @@ export const selectCollection = (collectionUrlParam) =>
   );
 
 // Select a product in a collection with matching key value as url-param
+export const selectProduct = (productUrlParam, collectionUrlParam) =>
+  createSelector([selectCollection(collectionUrlParam)], (collection) =>
+    collection.items.find(
+      (item) => item.linkUrl.split('/')[1] == productUrlParam
+    )
+  );

@@ -2,14 +2,13 @@ import React from 'react';
 import './product-styles.scss';
 import { withRouter, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Collection from '../collection/Collection    ';
 
 const Product = ({ match }) => {
   console.log(match);
   return (
     <div className='product-container'>
-      <div className='description-column'>DESCRIPTION</div>
-      <div className='product-images'>SCROLLABLE IMG CONTENT</div>
-      <div className='add-to-column'>PRICE, Add to bag</div>
+      <Route path={`${match.path}/:collectionId`} component={Collection} />
     </div>
   );
 };
@@ -18,4 +17,4 @@ const Product = ({ match }) => {
 //   product: selectProduct(ownProps)(state),
 // });
 
-export default connect()(Product);
+// export default connect()(Product);

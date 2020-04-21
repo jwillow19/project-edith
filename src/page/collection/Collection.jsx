@@ -2,11 +2,18 @@ import React from 'react';
 import CollectionItem from '../../components/collections/CollectionItem';
 import { connect } from 'react-redux';
 import { selectCollection } from '../../redux/selectors/shop.selector';
+import { Route } from 'react-router-dom';
+// import Product from '../product/Product';
+import ProductItem from '../../page/product/ProductItem';
 
 import './collection.styles.scss';
 
-const Collection = ({ collection }) => {
+const Collection = ({ collection, match }) => {
   const { title, items } = collection;
+  // <Route
+  //       path={`${match.path}/:collectionId/:productId`}
+  //       component={ProductItem}
+  //     />
   return (
     <div className='collection-page'>
       <h2 className='title'>{title}</h2>
