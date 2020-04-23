@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CustomButton from '../custom-button/CustomButton';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/actions/cart';
 import { withRouter } from 'react-router-dom';
@@ -31,9 +30,6 @@ const CollectionItem = ({ item, addItem, routeName, match, history }) => {
         <span className='name'>{name}</span>
         <span className='price'>{price}</span>
       </div>
-      <CustomButton onClick={() => addItem(item)} inverted>
-        Add to bag
-      </CustomButton>
     </div>
   );
 };

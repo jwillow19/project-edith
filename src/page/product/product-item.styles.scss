@@ -1,34 +1,169 @@
 .product-container {
-  display: flex;
+  margin: 10vw 10%;
+  display: block;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-  .description-container {
-    font-size: 16px;
-    width: 33vw;
-  }
-
-  .image {
-    width: 33vw;
-    justify-content: center;
-    align-items: center;
+  .main-product-container {
+    // margin: 10vw 10%;
     display: flex;
-  }
+    justify-content: space-between;
+    // flex-wrap enables dynamic wrapping b/w image/description viewport changes size
+    flex-wrap: wrap;
 
-  .add-to-column {
-    width: auto;
-
-    .price {
-      display: flex;
-      justify-content: center;
+    .main-image-container {
+      width: 40%;
       align-items: center;
-    }
-  }
-  .items {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+      justify-content: flex-end;
+      flex-direction: column;
+      flex-basis: auto;
+      // padding: 50px;
 
-    & .collection-item {
-      margin-bottom: 30px;
+      .large-image {
+        width: 100%;
+        min-width: 300px;
+        height: auto;
+        display: flex;
+        overflow: hidden;
+        flex-basis: auto;
+        align-items: center;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .description-container {
+      width: 25%;
+      min-width: 300px;
+      padding-top: 40px;
+      text-align: center;
+
+      .description-text {
+        font-size: 14px;
+        font-weight: lighter;
+      }
+      .price {
+        text-align: center;
+        font-size: large;
+        font-weight: 100;
+      }
+      .add-cart-btn {
+        padding: 14px 32px;
+        margin-top: 50%;
+        // width: auto;
+        // height: 50px;
+        letter-spacing: 0.5px;
+        // padding: 0 35px 0 35px;
+        font-family: inherit;
+        font-size: 12px;
+        background-color: white;
+        color: black;
+        text-transform: uppercase;
+        border: none;
+        outline: auto;
+        font-weight: lighter;
+        cursor: pointer;
+        display: inline-block;
+        justify-content: center;
+        // transformation
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        overflow: hidden;
+        -webkit-transition-duration: 0.7s;
+        transition-duration: 0.7s;
+        -webkit-transition-property: color, background-color;
+        transition-property: color, background-color;
+
+        &:hover {
+          background-color: black;
+          color: white;
+          border: 1px solid black;
+        }
+      }
+      // Size Dropdown
+      /* The dropdown container */
+      .product-size-dropdown {
+        position: relative;
+        display: inline-block;
+
+        /* Dropdown button */
+
+        .dropbtn {
+          position: relative;
+          font-size: 12px;
+          border: none;
+          outline: auto;
+          color: black;
+          padding: 14px 16px;
+          background-color: white;
+          font-family: inherit; /* Important for vertical align on mobile phones */
+          margin: 0; /* Important for vertical align on mobile phones */
+          -webkit-transform: perspective(1px) translateZ(0);
+          transform: perspective(1px) translateZ(0);
+          overflow: hidden;
+          -webkit-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+          -webkit-transition-property: color, background-color;
+          transition-property: color, background-color;
+
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: black;
+            color: white;
+            border: 1px solid white;
+            display: block;
+          }
+          /* Dropdown content (hidden by default) */
+        }
+
+        &:hover {
+          .dropdown-content {
+            display: block;
+          }
+        }
+        /* Dropdown content (hidden by default) */
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+          /* Links inside the dropdown */
+          a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+
+            &:hover {
+              background-color: #ddd;
+            }
+          }
+        }
+      }
+
+      /* Add a red background color to navbar links on hover */
+
+      // .dropdown:hover .dropbtn {
+      //   background-color: red;
+      // }
+
+      // /* Add a grey background color to dropdown links on hover */
+      // .dropdown-content a:hover {
+      //   background-color: #ddd;
+      // }
+
+      // /* Show the dropdown menu on hover */
+      // .dropdown:hover .dropdown-content {
+      //   display: block;
+      // }
     }
   }
 }
