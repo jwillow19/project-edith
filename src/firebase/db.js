@@ -21,9 +21,9 @@ export const createUserProfile = async (userAuth, additionData) => {
   // logout returns null - if(logout) do nothing
   if (!userAuth) return;
 
-  // reference to document location
+  // reference to QueryDocument object location
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-  // get snapshot of document
+  // get QuerySnapshot object of document
   const snapshot = userRef.get();
   // If snapshot of user DNE - create instance
   if (!snapshot.exists) {
@@ -31,6 +31,7 @@ export const createUserProfile = async (userAuth, additionData) => {
     const createdAt = new Date();
 
     try {
+      // create Document object
       await userRef.set({
         displayName,
         email,
@@ -46,6 +47,12 @@ export const createUserProfile = async (userAuth, additionData) => {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+// Create new collection to store items
+export const addCollectionAndDocuments = (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  console.log(collectionRef);
+};
 
 // For auth and using the db
 export const auth = firebase.auth();
