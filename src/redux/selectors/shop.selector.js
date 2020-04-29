@@ -8,6 +8,11 @@ export const selectShopCollections = createSelector(
   (shop) => shop.collections
 );
 
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetching
+);
+
 // [NOTE]
 // 1. get keys from collections object - ['hats', 'jackets', 'sneakers', ...]
 // 2. map each key to return a collection object
@@ -24,7 +29,7 @@ export const selectCollection = (collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null
   );
 
-// Select a product in a collection with matching key value as url-param
+// COMPOSED SELECTOR - Select a product in a collection with matching key value as url-param
 export const selectProduct = (productUrlParam, collectionUrlParam) =>
   createSelector([selectCollection(collectionUrlParam)], (collection) =>
     collection.items.find(
