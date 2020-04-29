@@ -14,14 +14,14 @@ export const selectShopCollections = createSelector(
 // 3. returns a list of collection objects for CollectionOverview to pass to CollectionPreview
 export const selectCollectionsForPreview = createSelector(
   [selectShopCollections],
-  (collections) => Object.keys(collections).map((key) => collections[key])
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
 // Select the collection which has matching key value as the url-param
 export const selectCollection = (collectionUrlParam) =>
-  createSelector(
-    [selectShopCollections],
-    (collections) => collections[collectionUrlParam]
+  createSelector([selectShopCollections], (collections) =>
+    collections ? collections[collectionUrlParam] : null
   );
 
 // Select a product in a collection with matching key value as url-param

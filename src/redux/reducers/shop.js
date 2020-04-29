@@ -1,12 +1,18 @@
-import SHOP_DATA from '../../page/shop/shop.data';
-
+// import SHOP_DATA from '../../page/shop/shop.data';
+import { UPDATE_COLLECTIONS } from '../actions/types';
 const initialState = {
-  collections: SHOP_DATA,
+  collections: null,
 };
 
 export default function (state = initialState, action) {
-  const { type } = action;
+  const { type, payload } = action;
   switch (type) {
+    // returns state with collections
+    case UPDATE_COLLECTIONS:
+      return {
+        ...state,
+        collections: payload,
+      };
     default:
       return state;
   }

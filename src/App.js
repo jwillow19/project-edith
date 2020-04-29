@@ -56,6 +56,12 @@ class App extends React.Component {
         } else {
           // userAuth = null on Logout, set state to null
           setUser(userAuth);
+
+          // add collections to store - run once and remove
+          // addCollectionAndDocuments(
+          //   'collections',
+          //   collectionsArray.map(({ title, items }) => ({ title, items }))
+          // );
         }
       } catch (err) {
         console.error(err);
@@ -97,6 +103,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionsForPreview,
 });
 
 // NOTE: how you would dispatch without redux-thunk
