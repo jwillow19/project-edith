@@ -7,33 +7,81 @@ import {
   AUTH_ERR,
   LOGOUT,
   SET_USER,
+  GOOGLE_SIGNIN_START,
+  SIGNIN_SUCCESS,
+  SIGNIN_FAILURE,
+  EMAIL_SIGNIN_START,
+  CHECK_USER_SESSION,
+  SIGNOUT_START,
+  SIGNOUT_SUCCESS,
+  SIGNOUT_FAILURE,
 } from '../actions/types';
 import { auth } from '../../firebase/db';
 import { createUserProfile } from '../../firebase/db';
 
-// @action  takes in a user object from authStateChanged and return action object
-export const setUser = (user) => ({
-  type: SET_USER,
+// // @action  takes in a user object from authStateChanged and return action object
+// export const setUser = (user) => ({
+//   type: SET_USER,
+//   payload: user,
+// });
+
+// @action  trigger signin start action
+export const googleSignInStart = () => ({
+  type: GOOGLE_SIGNIN_START,
+});
+
+// @action(user)  returns user on successful signin
+export const signInSuccess = (user) => ({
+  type: SIGNIN_SUCCESS,
   payload: user,
 });
 
-// @action  log user in with email and password
-export const loginWithEmailAndPassword = (email, password) => async (
-  dispatch
-) => {
-  try {
-    // firebase.auth method to sign in, search unique email identifier and verify password
-    await auth.signInWithEmailAndPassword(email, password);
-    dispatch({
-      type: LOGIN_SUCCESS,
-    });
-  } catch (err) {
-    console.error(err);
-    dispatch({
-      type: LOGIN_FAIL,
-    });
-  }
-};
+// @action(error)  returns error on failed signin
+export const signInFailure = (error) => ({
+  type: SIGNIN_FAILURE,
+  payload: error,
+});
+
+// @action(emailAndPasswor object)  trigger signin start action
+export const emailSignInStart = (emailAndPassword) => ({
+  type: EMAIL_SIGNIN_START,
+  payload: emailAndPassword,
+});
+
+// @action  checks user session, see if they are signed in or out
+export const checkUserSession = () => ({
+  type: CHECK_USER_SESSION,
+});
+
+// // @action  log user in with email and password
+// export const loginWithEmailAndPassword = (email, password) => async (
+//   dispatch
+// ) => {
+//   try {
+//     // firebase.auth method to sign in, search unique email identifier and verify password
+//     await auth.signInWithEmailAndPassword(email, password);
+//     dispatch({
+//       type: LOGIN_SUCCESS,
+//     });
+//   } catch (err) {
+//     console.error(err);
+//     dispatch({
+//       type: LOGIN_FAIL,
+//     });
+//   }
+// };
+
+// @action  sign user out
+export const signOutStart = () => ({
+  type: SIGNOUT_START,
+});
+export const signOutSuccess = () => ({
+  type: SIGNOUT_SUCCESS,
+});
+export const signOutFailure = (error) => ({
+  type: SIGNOUT_FAILURE,
+  payload: error,
+});
 
 // @action  registers user
 export const register = (name, email, password) => async (dispatch) => {

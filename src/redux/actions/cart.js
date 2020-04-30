@@ -7,40 +7,30 @@ import {
 } from './types';
 
 // @action - button onClick triggers action
-export const toggleCart = () => (dispatch) => {
-  dispatch({
-    type: TOGGLE_CART,
-  });
-};
+export const toggleCart = () => ({
+  type: TOGGLE_CART,
+});
 
 //@action   add item to cart
-export const addItem = (item) => (dispatch) => {
-  dispatch({
-    type: ADD_TO_CART,
-    payload: item,
-  });
-};
+export const addItem = (item) => ({
+  type: ADD_TO_CART,
+  payload: item,
+});
 
 //@action   remove item from cart
-export const removeItem = (item) => (dispatch) => {
-  dispatch({
-    type: REMOVE_FROM_CART,
-    payload: item,
-  });
-};
+export const removeItem = (item) => ({
+  type: REMOVE_FROM_CART,
+  payload: item,
+});
 
 //@action   decrease item by one
-export const decreaseItemCount = (item) => (dispatch) => {
-  dispatch({
-    type: DECREASE_BY_ONE,
-    payload: item,
-  });
-};
+export const decreaseItemCount = (item) => ({
+  type: DECREASE_BY_ONE,
+  payload: item,
+});
 
 //@action   increase item by one
-export const increaseItemCount = (item) => (dispatch) => {
-  dispatch({
-    type: INCREASE_BY_ONE,
-    payload: item,
-  });
-};
+export const increaseItemCount = (item) => ({
+  type: INCREASE_BY_ONE,
+  payload: item,
+});

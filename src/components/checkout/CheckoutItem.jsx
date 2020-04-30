@@ -49,8 +49,11 @@ CheckoutItem.propTypes = {
   decreaseItemCount: PropTypes.func.isRequired,
   increaseItemCount: PropTypes.func.isRequired,
 };
-export default connect(null, {
-  removeItem,
-  decreaseItemCount,
-  increaseItemCount,
-})(CheckoutItem);
+
+const mapDispatchToProps = (dispatch) => ({
+  decreaseItemCount: (cartItem) => dispatch(decreaseItemCount(cartItem)),
+  increaseItemCount: (cartItem) => dispatch(increaseItemCount(cartItem)),
+  removeItem: (cartItem) => dispatch(removeItem(cartItem)),
+});
+
+export default connect(null, mapDispatchToProps)(CheckoutItem);

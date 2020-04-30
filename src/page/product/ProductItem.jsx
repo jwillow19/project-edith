@@ -63,5 +63,9 @@ const mapStateToProps = (state, ownProps) => ({
     ownProps.match.params.collectionId
   )(state),
 });
-export default connect(mapStateToProps, { addItem })(ProductItem);
+
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item) => dispatch(addItem(item)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);
 // export default ProductItem;

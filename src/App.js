@@ -16,15 +16,11 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { auth } from './firebase/db';
-import { createUserProfile } from './firebase/db';
 import { connect } from 'react-redux';
-
-import { setUser } from './redux/actions/user';
 
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/selectors/user.selector';
-
+import { checkUserSession } from './redux/actions/user';
 import './App.css';
 
 class App extends React.Component {
@@ -32,41 +28,39 @@ class App extends React.Component {
     super(props);
   }
 
-  unsubscribeAuth = null;
+  // unsubscribeAuth = null;
 
   componentDidMount() {
+    const { checkUserSession } = this.props;
+    checkUserSession();
     // Destructure in props in class component
-    const { setUser } = this.props;
-
     // open-subscription between App & Firebase
     // auth.onAuthStateChanged triggers and reutnr user obj if authenticated, otherwise returns null
-    this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
-      try {
-        // on sign-in
-        if (userAuth) {
-          const userRef = await createUserProfile(userAuth);
-
-          // this line sees if DB has changed by looking at snapshot
-          userRef.onSnapshot((snapshot) => {
-            setUser({
-              id: snapshot.id,
-              ...snapshot.data(),
-            });
-          });
-        } else {
-          // userAuth = null on Logout, set state to null
-          setUser(userAuth);
-
-          // add collections to store - run once and remove
-          // addCollectionAndDocuments(
-          //   'collections',
-          //   collectionsArray.map(({ title, items }) => ({ title, items }))
-          // );
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    });
+    // this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   try {
+    //     // on sign-in
+    //     if (userAuth) {
+    //       const userRef = await createUserProfile(userAuth);
+    //       // this line sees if DB has changed by looking at snapshot
+    //       userRef.onSnapshot((snapshot) => {
+    //         setUser({
+    //           id: snapshot.id,
+    //           ...snapshot.data(),
+    //         });
+    //       });
+    //     } else {
+    //       // userAuth = null on Logout, set state to null
+    //       setUser(userAuth);
+    //       // add collections to store - run once and remove
+    //       // addCollectionAndDocuments(
+    //       //   'collections',
+    //       //   collectionsArray.map(({ title, items }) => ({ title, items }))
+    //       // );
+    //     }
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // });
   }
 
   componentWillUnmount() {
@@ -106,10 +100,10 @@ const mapStateToProps = createStructuredSelector({
   // collectionsArray: selectCollectionsForPreview,
 });
 
-// NOTE: how you would dispatch without redux-thunk
+// // NOTE: how you would dispatch without redux-thunk
 const mapDispatchToProps = (dispatch) => ({
-  // setUsr prop is now
-  setUser: (user) => dispatch(setUser(user)),
+  // setUser: (user) => dispatch(setUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 // App.propTypes = {

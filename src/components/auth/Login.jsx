@@ -11,7 +11,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
-import { signInWithGoogle } from '../../firebase/db';
+import { googleSignInStart, emailSignInStart } from '../../redux/actions/user';
 import { connect } from 'react-redux';
 import { loginWithEmailAndPassword } from '../../redux/actions/user';
 
@@ -74,8 +74,10 @@ class Login extends React.Component {
   };
   handleSubmit = async (e) => {
     e.preventDefault();
+    const { emailSignInStart } = this.props;
     const { email, password } = this.state;
-    this.props.loginWithEmailAndPassword(email, password);
+
+    emailSignInStart(email, password);
     // try {
     //   // firebase.auth method to sign in, search unique email identifier and verify password
     //   await auth.signInWithEmailAndPassword(email, password);
@@ -87,7 +89,7 @@ class Login extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    const { classes } = this.props;
+    const { classes, googleSignInStart } = this.props;
     return (
       <ThemeProvider theme={theme}>
         <Grid
@@ -163,7 +165,7 @@ class Login extends React.Component {
                 <Button
                   color='secondary'
                   variant='outlined'
-                  onClick={signInWithGoogle}
+                  onClick={googleSignInStart}
                   className={classes.submit}
                 >
                   Sign in with Google
@@ -193,6 +195,10 @@ class Login extends React.Component {
 Login.propTypes = {
   loginWithEmailAndPassword: PropTypes.func.isRequired,
 };
-export default connect(null, { loginWithEmailAndPassword })(
-  withStyles(useStyles)(Login)
-);
+
+const mapDispatchToProps = (dispatch) => ({
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email, password) =>
+    dispatch(emailSignInStart({ email, password })),
+});
+export default connect(null, mapDispatchToProps)(withStyles(useStyles)(Login));

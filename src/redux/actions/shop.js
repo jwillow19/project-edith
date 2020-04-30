@@ -25,16 +25,18 @@ export const fetchCollectionsFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const fetchCollectionsStartAsync = () => (dispatch) => {
-  const collectionRef = firestore.collection('collections');
-  dispatch(fetchCollectionsStart());
-  //  Promise styled fetch:
-  try {
-    collectionRef.get().then((snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      dispatch(fetchCollectionsSuccess(collectionsMap));
-    });
-  } catch (err) {
-    dispatch(fetchCollectionsFailure(err.message));
-  }
-};
+// @action  fetchCollectionsStartAsync promise-based action moved to saga instead
+
+// export const fetchCollectionsStartAsync = () => (dispatch) => {
+//   const collectionRef = firestore.collection('collections');
+//   dispatch(fetchCollectionsStart());
+//   //  Promise styled fetch:
+//   try {
+//     collectionRef.get().then((snapshot) => {
+//       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+//       dispatch(fetchCollectionsSuccess(collectionsMap));
+//     });
+//   } catch (err) {
+//     dispatch(fetchCollectionsFailure(err.message));
+//   }
+// };
