@@ -30,7 +30,7 @@ const initialState = {
       title: 'contact-lenses',
       imageUrl: '/images/contact-lenses.jpg',
       id: 3,
-      linkUrl: 'shop/contacts',
+      linkUrl: 'shop/contact%20lenses',
     },
   ],
 };

@@ -1,11 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addItem } from '../../redux/actions/cart';
 import { withRouter } from 'react-router-dom';
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, addItem, routeName, match, history }) => {
+const CollectionItem = ({ item, routeName, match, history }) => {
   const { name, imageUrl, price, linkUrl } = item;
   console.log(match);
 
@@ -34,8 +31,4 @@ const CollectionItem = ({ item, addItem, routeName, match, history }) => {
   );
 };
 
-CollectionItem.propTypes = {
-  addItem: PropTypes.func.isRequired,
-};
-
-export default connect(null, { addItem })(withRouter(CollectionItem));
+export default withRouter(CollectionItem);

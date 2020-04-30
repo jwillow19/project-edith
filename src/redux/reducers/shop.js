@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
     case FETCH_COLLECTIONS_START:
       return {
         ...state,
-        isFethcing: true,
+        isFetching: true,
       };
     case FETCH_COLLECTIONS_SUCCESS:
       return {

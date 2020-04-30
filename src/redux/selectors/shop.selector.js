@@ -36,3 +36,10 @@ export const selectProduct = (productUrlParam, collectionUrlParam) =>
       (item) => item.linkUrl.split('/')[1] == productUrlParam
     )
   );
+
+// returns boolean indicating if collection is null
+export const selectIsCollectionLoaded = createSelector(
+  [selectShop],
+  // !! to convert falsy value to boolean - !!null == false
+  (shop) => !!shop.collections
+);
