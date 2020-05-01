@@ -4,6 +4,7 @@ import {
   REMOVE_FROM_CART,
   DECREASE_BY_ONE,
   INCREASE_BY_ONE,
+  CLEAR_CART,
 } from '../actions/types';
 import {
   addItemToCart,
@@ -24,6 +25,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         hidden: !state.hidden,
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
       };
     case ADD_TO_CART:
       return {

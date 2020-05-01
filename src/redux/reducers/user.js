@@ -1,11 +1,4 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_FAIL,
-  USER_LOADED,
-  AUTH_ERR,
-  LOGOUT,
-  SET_USER,
   SIGNIN_SUCCESS,
   SIGNIN_FAILURE,
   SIGNOUT_SUCCESS,
@@ -21,6 +14,7 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case SIGNIN_SUCCESS:
+      // case SIGNUP_SUCCESS:
       return {
         ...state,
         currentUser: payload,
@@ -33,6 +27,7 @@ export default function (state = initialState, action) {
         currentUser: null,
       };
     case SIGNIN_FAILURE:
+    // case SIGNUP_FAILURE:
     case SIGNOUT_FAILURE:
       return {
         ...state,
@@ -44,12 +39,12 @@ export default function (state = initialState, action) {
     //     loading: false,
     //     currentUser: payload,
     //   };
-    case REGISTER_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        currentUser: payload,
-      };
+    // case REGISTER_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     currentUser: payload,
+    //   };
 
     default:
       return state;

@@ -1,6 +1,7 @@
 import {
   GOOGLE_SIGNIN_START,
   EMAIL_SIGNIN_START,
+  SIGNUP_START,
   CHECK_USER_SESSION,
   SIGNOUT_START,
 } from '../actions/types';
@@ -70,6 +71,18 @@ export function* signUserOut() {
   }
 }
 
+// @saga    signUserUp - sign user up, save user to db and log them in
+export function* signUserUp({ payload: { email, password, name } }) {
+  try {
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    const userRef = yield call(createUserProfile, user, { displayName: name }); //get userRef - similar to async/await with yield
+    const userSnapshot = yield userRef.get(); //get userSnapshot from QueryReference object
+    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })); // sign in with snapshot.data()
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+}
+
 // ======================================================
 // Listeners
 
@@ -92,6 +105,11 @@ export function* onSignOutStart() {
   yield takeLatest(SIGNOUT_START, signUserOut);
 }
 
+// @saga    listens for SIGNUP_START action_type
+export function* onSignUpStart() {
+  yield takeLatest(SIGNUP_START, signUserUp);
+}
+
 // ======================================================
 // userSagas
 
@@ -102,5 +120,6 @@ export function* userSagas() {
     call(emailSignInStart),
     call(isUserAuthenticated),
     call(onSignOutStart),
+    call(onSignUpStart),
   ]);
 }

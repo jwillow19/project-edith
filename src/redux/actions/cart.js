@@ -4,6 +4,7 @@ import {
   REMOVE_FROM_CART,
   DECREASE_BY_ONE,
   INCREASE_BY_ONE,
+  CLEAR_CART,
 } from './types';
 
 // @action - button onClick triggers action
@@ -33,4 +34,9 @@ export const decreaseItemCount = (item) => ({
 export const increaseItemCount = (item) => ({
   type: INCREASE_BY_ONE,
   payload: item,
+});
+
+//@action   clear items in cart
+export const clearCart = () => ({
+  type: CLEAR_CART,
 });

@@ -11,6 +11,9 @@ import { withStyles } from '@material-ui/core/styles';
 import { Link, Redirect } from 'react-router-dom';
 import { auth } from '../../firebase/db';
 import { createUserProfile } from '../../firebase/db';
+
+import { signUpStart } from '../../redux/actions/user';
+
 import { register } from '../../redux/actions/user';
 import { connect } from 'react-redux';
 
@@ -70,13 +73,14 @@ class Register extends React.Component {
     e.preventDefault();
 
     const { name, email, password1, password2 } = this.state;
+    const { signUpStart } = this.props;
 
     if (password1 !== password2) {
       alert('Passwords do not match');
       return;
     }
     // @action - register
-    this.props.register(name, email, password1);
+    signUpStart(email, name, password1);
     this.setState({
       name: '',
       email: '',
@@ -195,4 +199,12 @@ Register.propTypes = {
   register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { register })(withStyles(useStyles)(Register));
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (email, name, password) =>
+    dispatch(signUpStart({ email, name, password })),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withStyles(useStyles)(Register));
