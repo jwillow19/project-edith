@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -8,13 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import { Link, Redirect } from 'react-router-dom';
-import { auth } from '../../firebase/db';
-import { createUserProfile } from '../../firebase/db';
 
 import { signUpStart } from '../../redux/actions/user';
 
-import { register } from '../../redux/actions/user';
 import { connect } from 'react-redux';
 
 const theme = createMuiTheme({
@@ -53,27 +49,21 @@ const useStyles = (theme) => ({
   },
 });
 
-class Register extends React.Component {
-  constructor(props) {
-    super(props);
+const Register = ({ classes, signUpStart }) => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    password1: '',
+    password2: '',
+  });
+  const { name, email, password1, password2 } = formState;
 
-    this.state = {
-      name: '',
-      email: '',
-      password1: '',
-      password2: '',
-    };
-  }
-
-  handleOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  const handleOnChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { name, email, password1, password2 } = this.state;
-    const { signUpStart } = this.props;
 
     if (password1 !== password2) {
       alert('Passwords do not match');
@@ -81,123 +71,102 @@ class Register extends React.Component {
     }
     // @action - register
     signUpStart(email, name, password1);
-    this.setState({
-      name: '',
-      email: '',
-      password1: '',
-      password2: '',
-    });
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   };
 
-  render() {
-    const { name, email, password1, password2 } = this.state;
-    const { classes } = this.props;
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid
+        container
+        direction='column'
+        alignItems='center'
+        spacing={8}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
+        <Grid item xs={6} sm={6} md={6} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Typography component='h1' variant='h5'>
+              Create an account
+            </Typography>
 
-    return (
-      <ThemeProvider theme={theme}>
-        <Grid
-          container
-          direction='column'
-          alignItems='center'
-          spacing={8}
-          style={{ display: 'flex', justifyContent: 'flex-end' }}
-        >
-          <Grid
-            item
-            xs={6}
-            sm={6}
-            md={6}
-            component={Paper}
-            elevation={6}
-            square
-          >
-            <div className={classes.paper}>
-              <Typography component='h1' variant='h5'>
-                Create an account
-              </Typography>
-
-              <form
-                className={classes.form}
-                onSubmit={this.handleSubmit}
-                noValidate
+            <form className={classes.form} onSubmit={handleSubmit} noValidate>
+              <Grid item>
+                <TextField
+                  onChange={handleOnChange}
+                  margin='normal'
+                  required
+                  type='text'
+                  id='name'
+                  name='name'
+                  value={name}
+                  autoComplete='name'
+                  autoFocus
+                  label='Name'
+                  style={{ width: '20vw' }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  onChange={handleOnChange}
+                  margin='normal'
+                  required
+                  type='email'
+                  id='email'
+                  name='email'
+                  value={email}
+                  autoFocus
+                  label='Email'
+                  style={{ width: '20vw' }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  onChange={handleOnChange}
+                  margin='normal'
+                  required
+                  name='password1'
+                  label='Password'
+                  type='password'
+                  id='password1'
+                  autoFocus
+                  value={password1}
+                  style={{ width: '20vw' }}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  onChange={handleOnChange}
+                  margin='normal'
+                  required
+                  id='password2'
+                  name='password2'
+                  value={password2}
+                  type='password'
+                  autoFocus
+                  label='Confirm Password'
+                  style={{ width: '20vw' }}
+                />
+              </Grid>
+              <Button
+                type='submit'
+                size='large'
+                color='primary'
+                variant='contained'
+                className={classes.submit}
               >
-                <Grid item>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    type='text'
-                    id='name'
-                    name='name'
-                    value={name}
-                    autoComplete='name'
-                    autoFocus
-                    label='Name'
-                    style={{ width: '20vw' }}
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    type='email'
-                    id='email'
-                    name='email'
-                    value={email}
-                    autoFocus
-                    label='Email'
-                    style={{ width: '20vw' }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    name='password1'
-                    label='Password'
-                    type='password'
-                    id='password1'
-                    autoFocus
-                    value={password1}
-                    style={{ width: '20vw' }}
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    id='password2'
-                    name='password2'
-                    value={password2}
-                    type='password'
-                    autoFocus
-                    label='Confirm Password'
-                    style={{ width: '20vw' }}
-                  />
-                </Grid>
-                <Button
-                  type='submit'
-                  size='large'
-                  color='primary'
-                  variant='contained'
-                  className={classes.submit}
-                >
-                  Create
-                </Button>
-              </form>
-            </div>
-          </Grid>
+                Create
+              </Button>
+            </form>
+          </div>
         </Grid>
-      </ThemeProvider>
-    );
-  }
-}
-Register.propTypes = {
-  register: PropTypes.func.isRequired,
+      </Grid>
+    </ThemeProvider>
+  );
 };
+
+// Register.propTypes = {
+//   register: PropTypes.func.isRequired,
+// };
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (email, name, password) =>

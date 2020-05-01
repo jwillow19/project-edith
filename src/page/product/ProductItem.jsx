@@ -36,12 +36,12 @@ const ProductItem = ({ item, addItem }) => {
           <form>
             <p className='product-color-chart'>color goes here</p>
 
-            <div class='product-size-dropdown'>
-              <button class='dropbtn'>
+            <div className='product-size-dropdown'>
+              <button className='dropbtn'>
                 SELECT FRAME SIZE
-                <i class='fa fa-caret-down'></i>
+                <i className='fa fa-caret-down'></i>
               </button>
-              <div class='dropdown-content'>
+              <div className='dropdown-content'>
                 <a href='#'>Link 1</a>
                 <a href='#'>Link 2</a>
                 <a href='#'>Link 3</a>

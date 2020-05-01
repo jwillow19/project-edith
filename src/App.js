@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 import Home from './page/home/Home';
 import Shop from './page/shop/Shop';
@@ -23,81 +22,74 @@ import { selectCurrentUser } from './redux/selectors/user.selector';
 import { checkUserSession } from './redux/actions/user';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // unsubscribeAuth = null;
-
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+const App = ({ checkUserSession, currentUser }) => {
+  useEffect(() => {
     checkUserSession();
-    // Destructure in props in class component
-    // open-subscription between App & Firebase
-    // auth.onAuthStateChanged triggers and reutnr user obj if authenticated, otherwise returns null
-    // this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
-    //   try {
-    //     // on sign-in
-    //     if (userAuth) {
-    //       const userRef = await createUserProfile(userAuth);
-    //       // this line sees if DB has changed by looking at snapshot
-    //       userRef.onSnapshot((snapshot) => {
-    //         setUser({
-    //           id: snapshot.id,
-    //           ...snapshot.data(),
-    //         });
-    //       });
-    //     } else {
-    //       // userAuth = null on Logout, set state to null
-    //       setUser(userAuth);
-    //       // add collections to store - run once and remove
-    //       // addCollectionAndDocuments(
-    //       //   'collections',
-    //       //   collectionsArray.map(({ title, items }) => ({ title, items }))
-    //       // );
-    //     }
-    //   } catch (err) {
-    //     console.error(err);
-    //   }
-    // });
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    // close subscription from auth to prevent memory leak
-    this.unsubscribeAuth();
-  }
+  // componentDidMount() {
+  //   const { checkUserSession } = this.props;
+  //   checkUserSession();
+  //   // Destructure in props in class component
+  //   // open-subscription between App & Firebase
+  //   // auth.onAuthStateChanged triggers and reutnr user obj if authenticated, otherwise returns null
+  //   // this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
+  //   //   try {
+  //   //     // on sign-in
+  //   //     if (userAuth) {
+  //   //       const userRef = await createUserProfile(userAuth);
+  //   //       // this line sees if DB has changed by looking at snapshot
+  //   //       userRef.onSnapshot((snapshot) => {
+  //   //         setUser({
+  //   //           id: snapshot.id,
+  //   //           ...snapshot.data(),
+  //   //         });
+  //   //       });
+  //   //     } else {
+  //   //       // userAuth = null on Logout, set state to null
+  //   //       setUser(userAuth);
+  //   //       // add collections to store - run once and remove
+  //   //       // addCollectionAndDocuments(
+  //   //       //   'collections',
+  //   //       //   collectionsArray.map(({ title, items }) => ({ title, items }))
+  //   //       // );
+  //   //     }
+  //   //   } catch (err) {
+  //   //     console.error(err);
+  //   //   }
+  //   // });
+  // }
 
-  render() {
-    const { currentUser } = this.props;
+  // componentWillUnmount() {
+  //   // close subscription from auth to prevent memory leak
+  //   this.unsubscribeAuth();
+  // }
 
-    return (
-      <Router>
-        <Header />
-        <div>
-          <Switch>
-            <Route exact path='/' component={Home} />
-            <Route path='/shop' component={Shop} />
+  return (
+    <Router>
+      <Header />
+      <div>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/shop' component={Shop} />
 
-            <Route
-              path='/login'
-              render={() => (currentUser ? <Redirect to='/' /> : <Login />)}
-            />
-            <Route
-              path='/register'
-              render={() => (currentUser ? <Redirect to='/' /> : <Register />)}
-            />
-            <Route exact path='/checkout' component={Checkout} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
-}
+          <Route
+            path='/login'
+            render={() => (currentUser ? <Redirect to='/' /> : <Login />)}
+          />
+          <Route
+            path='/register'
+            render={() => (currentUser ? <Redirect to='/' /> : <Register />)}
+          />
+          <Route exact path='/checkout' component={Checkout} />
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  // collectionsArray: selectCollectionsForPreview,
 });
 
 // // NOTE: how you would dispatch without redux-thunk
@@ -106,7 +98,4 @@ const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
 });
 
-// App.propTypes = {
-//   setUser: PropTypes.func.isRequired,
-// };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

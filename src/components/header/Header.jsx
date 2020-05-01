@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/db';
 import './header.styles.scss';
 import logo from '../../assets/refine-logo.png';
 import { connect } from 'react-redux';
@@ -45,10 +44,10 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
   );
 };
 
-Header.propTypes = {
-  currentUser: PropTypes.object.isRequired,
-  hidden: PropTypes.object.isRequired,
-};
+// Header.propTypes = {
+//   currentUser: PropTypes.object.isRequired,
+//   hidden: PropTypes.object.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,

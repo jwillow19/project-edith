@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 import { googleSignInStart, emailSignInStart } from '../../redux/actions/user';
 import { connect } from 'react-redux';
-import { loginWithEmailAndPassword } from '../../redux/actions/user';
+// import { loginWithEmailAndPassword } from '../../redux/actions/user';
 
 const theme = createMuiTheme({
   palette: {
@@ -60,141 +60,124 @@ const useStyles = (theme) => ({
   },
 });
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
+const Login = ({ classes, googleSignInStart, emailSignInStart }) => {
+  const [formState, setFormState] = useState({
+    email: '',
+    password: '',
+  });
 
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
-  handleOnChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+  const { email, password } = formState;
+
+  // NOTE: need to spread formState, then use object literal to update fields
+  const handleOnChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
   };
-  handleSubmit = async (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { emailSignInStart } = this.props;
-    const { email, password } = this.state;
-
     emailSignInStart(email, password);
-    // try {
-    //   // firebase.auth method to sign in, search unique email identifier and verify password
-    //   await auth.signInWithEmailAndPassword(email, password);
-    //   this.setState({ email: '', password: '' });
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
-  render() {
-    const { email, password } = this.state;
-    const { classes, googleSignInStart } = this.props;
-    return (
-      <ThemeProvider theme={theme}>
-        <Grid
-          container
-          direction='column'
-          alignItems='center'
-          spacing={8}
-          style={{ display: 'flex', justifyContent: 'flex-end' }}
-        >
-          <Grid
-            item
-            xs={6}
-            sm={6}
-            md={6}
-            component={Paper}
-            elevation={6}
-            square
-          >
-            <div className={classes.paper}>
-              <Typography component='h1' variant='h5'>
-                Sign in
-              </Typography>
+  // render() {
+  // const { email, password } = this.state;
+  // const { classes, googleSignInStart } = this.props;
+  return (
+    <ThemeProvider theme={theme}>
+      <Grid
+        container
+        direction='column'
+        alignItems='center'
+        spacing={8}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
+        <Grid item xs={6} sm={6} md={6} component={Paper} elevation={6} square>
+          <div className={classes.paper}>
+            <Typography component='h1' variant='h5'>
+              Sign in
+            </Typography>
 
-              <form
-                className={classes.form}
-                onSubmit={this.handleSubmit}
-                noValidate
-              >
-                <Grid item>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    id='email'
-                    name='email'
-                    value={email}
-                    autoComplete='email'
-                    autoFocus
-                    fullWidth
-                    label='Email'
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    onChange={this.handleOnChange}
-                    margin='normal'
-                    required
-                    name='password'
-                    label='Password'
-                    type='password'
-                    id='password'
-                    value={password}
-                    fullWidth
-                    autoComplete='current-password'
-                  />
-                </Grid>
-
-                <div style={{ margin: '10px' }}></div>
-
-                <FormControlLabel
-                  control={<Checkbox value='remember' color='primary' />}
-                  label='Remember me'
+            <form
+              className={classes.form}
+              onSubmit={(e) => handleSubmit(e)}
+              noValidate
+            >
+              <Grid item>
+                <TextField
+                  onChange={(e) => handleOnChange(e)}
+                  margin='normal'
+                  required
+                  id='email'
+                  name='email'
+                  value={email}
+                  autoComplete='email'
+                  autoFocus
+                  fullWidth
+                  label='Email'
                 />
+              </Grid>
+              <Grid item>
+                <TextField
+                  onChange={(e) => handleOnChange(e)}
+                  margin='normal'
+                  required
+                  name='password'
+                  label='Password'
+                  type='password'
+                  id='password'
+                  value={password}
+                  fullWidth
+                  autoComplete='current-password'
+                />
+              </Grid>
 
-                <Button
-                  type='submit'
-                  color='primary'
-                  variant='contained'
-                  className={classes.submit}
-                >
-                  Sign In
-                </Button>
-                <Button
-                  color='secondary'
-                  variant='outlined'
-                  onClick={googleSignInStart}
-                  className={classes.submit}
-                >
-                  Sign in with Google
-                </Button>
+              <div style={{ margin: '10px' }}></div>
 
-                <Grid container>
-                  <Grid item xs>
-                    <Link to='/' variant='body2'>
-                      <p>Forgot password?</p>
-                    </Link>
-                  </Grid>
-                  <Grid item xs>
-                    <Link to='/register' variant='body2'>
-                      <p className={classes.text}>Don't have an account?</p>
-                    </Link>
-                  </Grid>
+              <FormControlLabel
+                control={<Checkbox value='remember' color='primary' />}
+                label='Remember me'
+              />
+
+              <Button
+                type='submit'
+                color='primary'
+                variant='contained'
+                className={classes.submit}
+              >
+                Sign In
+              </Button>
+              <Button
+                color='secondary'
+                variant='outlined'
+                onClick={googleSignInStart}
+                className={classes.submit}
+              >
+                Sign in with Google
+              </Button>
+
+              <Grid container>
+                <Grid item xs>
+                  <Link to='/' variant='body2'>
+                    <p>Forgot password?</p>
+                  </Link>
                 </Grid>
-              </form>
-            </div>
-          </Grid>
+                <Grid item xs>
+                  <Link to='/register' variant='body2'>
+                    <p className={classes.text}>Don't have an account?</p>
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
         </Grid>
-      </ThemeProvider>
-    );
-  }
-}
-
-Login.propTypes = {
-  loginWithEmailAndPassword: PropTypes.func.isRequired,
+      </Grid>
+    </ThemeProvider>
+  );
 };
+// }
+
+// Login.propTypes = {
+//   loginWithEmailAndPassword: PropTypes.func.isRequired,
+// };
 
 const mapDispatchToProps = (dispatch) => ({
   googleSignInStart: () => dispatch(googleSignInStart()),

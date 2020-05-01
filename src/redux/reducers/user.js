@@ -14,7 +14,6 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case SIGNIN_SUCCESS:
-      // case SIGNUP_SUCCESS:
       return {
         ...state,
         currentUser: payload,
@@ -27,24 +26,11 @@ export default function (state = initialState, action) {
         currentUser: null,
       };
     case SIGNIN_FAILURE:
-    // case SIGNUP_FAILURE:
     case SIGNOUT_FAILURE:
       return {
         ...state,
         error: payload,
       };
-    // case SET_USER:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     currentUser: payload,
-    //   };
-    // case REGISTER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     currentUser: payload,
-    //   };
 
     default:
       return state;
