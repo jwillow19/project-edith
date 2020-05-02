@@ -8,7 +8,7 @@ const CollectionsPreview = ({ match, history, title, items, routeName }) => {
     history.push(`${match.url}/${title.toLowerCase()}`);
   };
 
-  console.log(match.url);
+  // console.log(match.url);
   return (
     <div className='collection-preview'>
       <div onClick={() => handleTitleClick()}>

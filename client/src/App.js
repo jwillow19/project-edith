@@ -17,53 +17,19 @@ import {
 
 import { connect } from 'react-redux';
 
+import RB_DATA from './page/shop/rayban-sg';
+import { addDocumentToCollection } from './firebase/db';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/selectors/user.selector';
 import { checkUserSession } from './redux/actions/user';
+
 import './App.css';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
+    // addDocumentToCollection('collections', RB_DATA);
   }, [checkUserSession]);
-
-  // componentDidMount() {
-  //   const { checkUserSession } = this.props;
-  //   checkUserSession();
-  //   // Destructure in props in class component
-  //   // open-subscription between App & Firebase
-  //   // auth.onAuthStateChanged triggers and reutnr user obj if authenticated, otherwise returns null
-  //   // this.unsubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
-  //   //   try {
-  //   //     // on sign-in
-  //   //     if (userAuth) {
-  //   //       const userRef = await createUserProfile(userAuth);
-  //   //       // this line sees if DB has changed by looking at snapshot
-  //   //       userRef.onSnapshot((snapshot) => {
-  //   //         setUser({
-  //   //           id: snapshot.id,
-  //   //           ...snapshot.data(),
-  //   //         });
-  //   //       });
-  //   //     } else {
-  //   //       // userAuth = null on Logout, set state to null
-  //   //       setUser(userAuth);
-  //   //       // add collections to store - run once and remove
-  //   //       // addCollectionAndDocuments(
-  //   //       //   'collections',
-  //   //       //   collectionsArray.map(({ title, items }) => ({ title, items }))
-  //   //       // );
-  //   //     }
-  //   //   } catch (err) {
-  //   //     console.error(err);
-  //   //   }
-  //   // });
-  // }
-
-  // componentWillUnmount() {
-  //   // close subscription from auth to prevent memory leak
-  //   this.unsubscribeAuth();
-  // }
 
   return (
     <Router>
@@ -94,7 +60,6 @@ const mapStateToProps = createStructuredSelector({
 
 // // NOTE: how you would dispatch without redux-thunk
 const mapDispatchToProps = (dispatch) => ({
-  // setUser: (user) => dispatch(setUser(user)),
   checkUserSession: () => dispatch(checkUserSession()),
 });
 

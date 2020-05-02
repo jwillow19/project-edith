@@ -51,12 +51,13 @@ firebase.initializeApp(firebaseConfig);
 // Get snapshot to object
 export const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollecion = collections.docs.map((doc) => {
-    const { title, items } = doc.data();
+    const { title, items, ...otherProps } = doc.data();
     return {
       routeName: encodeURI(title.toLowerCase()),
       id: doc.id,
       title,
       items,
+      ...otherProps,
     };
   });
 
@@ -69,18 +70,27 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 };
 
 // Create new collection to store items with batch
-// export const addCollectionAndDocuments = async (
-//   collectionKey,
-//   objectsToAdd
-// ) => {
-//   const collectionRef = firestore.collection(collectionKey);
-//   const batch = firestore.batch();
-//   objectsToAdd.forEach((obj) => {
-//     const newDocRef = collectionRef.doc();
-//     batch.set(newDocRef, obj);
-//   });
-//   return await batch.commit();
-// };
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+  objectsToAdd.forEach((obj) => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj);
+  });
+  return await batch.commit();
+};
+
+// Create new document object to collectionKey
+export const addDocumentToCollection = async (collectionKey, objectToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const newDocRef = collectionRef.doc();
+  const batch = firestore.batch();
+  batch.set(newDocRef, objectToAdd);
+  return await batch.commit();
+};
 
 // checks if user is authenticated
 export const getCurrentUser = () => {

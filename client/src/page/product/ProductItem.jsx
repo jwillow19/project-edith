@@ -8,7 +8,8 @@ import {
   selectCollection,
 } from '../../redux/selectors/shop.selector';
 
-const ProductItem = ({ item, collection, addItem }) => {
+const ProductItem = ({ match, history, item, collection, addItem }) => {
+  // console.log(match);
   // console.log(collection);
 
   // <div className='main-image-container'>
@@ -33,7 +34,7 @@ const ProductItem = ({ item, collection, addItem }) => {
             aspernatur aut odit aut fugit, sed quia consequuntur ma
           </p>
         </div>
-        <ProductImage imageUrl={imageUrl} />
+        <ProductImage imageUrl={imageUrl} match={match} history={history} />
 
         <div className='description-container'>
           <h5 className='price'>{collection.title}</h5>

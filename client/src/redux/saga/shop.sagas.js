@@ -7,7 +7,6 @@ import {
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/db';
 
 export function* fetchCollectionsAsync() {
-  yield console.log('something');
   try {
     const collectionRef = firestore.collection('collections');
     const snapshot = yield collectionRef.get();
