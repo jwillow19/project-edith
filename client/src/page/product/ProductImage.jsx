@@ -5,12 +5,20 @@ import { createStructuredSelector } from 'reselect';
 import './product-image.styles.scss';
 
 const ProductImage = ({ imageUrl }) => {
+  const imgArry = [
+    '/images/shop-img/hats/brown-brim.png',
+    '/images/shop-img/hats/blue-beanie.png',
+    '/images/shop-img/hats/brown-brim.png',
+    '/images/shop-img/hats/blue-beanie.png',
+    '/images/shop-img/hats/brown-brim.png',
+    '/images/shop-img/hats/blue-beanie.png',
+  ];
   const [x, setX] = useState(0);
   const slideLeft = () => {
-    setX(x + 100);
+    x === 0 ? setX(-100 * (imgArry.length - 1)) : setX(x + 100);
   };
   const slideRight = () => {
-    setX(x - 100);
+    x === -100 * (imgArry.length - 1) ? setX(0) : setX(x - 100);
   };
 
   return (
@@ -22,17 +30,14 @@ const ProductImage = ({ imageUrl }) => {
       <div className='mini-image-slider'>
         <ul>
           {/* List of images to map through */}
-          {[
-            '/images/shop-img/hats/brown-brim.png',
-            '/images/shop-img/hats/blue-beanie.png',
-          ].map((imgPath, index) => {
+          {imgArry.map((imgPath, index) => {
             return (
               <div
                 key={index}
                 className='slide'
-                style={{ transform: `transformBox(${x}%)` }}
+                style={{ transform: `translateX(${x}%)` }}
               >
-                {imgPath}
+                <img src={imgPath}></img>
               </div>
             );
           })}
