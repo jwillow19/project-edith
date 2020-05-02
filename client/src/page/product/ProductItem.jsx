@@ -2,11 +2,22 @@ import React from 'react';
 import './product-item.styles.scss';
 import { addItem } from '../../redux/actions/cart';
 import { connect } from 'react-redux';
+import ProductImage from './ProductImage';
+import {
+  selectProduct,
+  selectCollection,
+} from '../../redux/selectors/shop.selector';
 
-import { selectProduct } from '../../redux/selectors/shop.selector';
+const ProductItem = ({ item, collection, addItem }) => {
+  // console.log(collection);
 
-const ProductItem = ({ item, addItem }) => {
-  console.log(item);
+  // <div className='main-image-container'>
+  //   <div className='large-image'>
+  //     <img src={imageUrl} alt='product' />
+  //   </div>
+  //   <div className='mini-images'></div>
+  // </div>;
+
   const { name, imageUrl, price } = item;
   return (
     <div className='product-container'>
@@ -22,32 +33,20 @@ const ProductItem = ({ item, addItem }) => {
             aspernatur aut odit aut fugit, sed quia consequuntur ma
           </p>
         </div>
-
-        <div className='main-image-container'>
-          <div className='large-image'>
-            <img src={imageUrl} alt='product' />
-          </div>
-          <div className='mini-images'></div>
-        </div>
+        <ProductImage imageUrl={imageUrl} />
 
         <div className='description-container'>
+          <h5 className='price'>{collection.title}</h5>
+          <h6 className='price'>BrandNameGoesHere</h6>
           <h5 className='price'>${price} CAD</h5>
           <p>Canada - Free shipping and return on all orders</p>
-          <form>
-            <p className='product-color-chart'>color goes here</p>
 
-            <div className='product-size-dropdown'>
-              <button className='dropbtn'>
-                SELECT FRAME SIZE
-                <i className='fa fa-caret-down'></i>
-              </button>
-              <div className='dropdown-content'>
-                <a href='#'>Link 1</a>
-                <a href='#'>Link 2</a>
-                <a href='#'>Link 3</a>
-              </div>
+          <form>
+            <div className='product-size-box'>
+              <button className='size-btn'>SELECT FRAME SIZE</button>
             </div>
           </form>
+
           <button className='add-cart-btn' onClick={() => addItem(item)}>
             Add to cart
           </button>
@@ -62,6 +61,7 @@ const mapStateToProps = (state, ownProps) => ({
     ownProps.match.params.productId,
     ownProps.match.params.collectionId
   )(state),
+  collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
