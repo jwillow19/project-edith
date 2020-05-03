@@ -29,13 +29,32 @@ export const selectCollection = (collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null
   );
 
+// @selector  selects sibling of product
+export const selectProductSibling = (productUrlParam, collectionUrlParam) =>
+  createSelector([selectCollection(collectionUrlParam)], (collection) =>
+    collection.items.find((item) => productUrlParam.includes(item.model))
+  );
+
 // COMPOSED SELECTOR - Select a product in a collection with matching key value as url-param
 export const selectProduct = (productUrlParam, collectionUrlParam) =>
-  createSelector([selectCollection(collectionUrlParam)], (collection) =>
-    collection.items.find(
-      (item) => item.linkUrl.split('/')[1] === productUrlParam
-    )
-  );
+  createSelector([selectCollection(collectionUrlParam)], (collection) => {
+    var finalProduct = null;
+    collection.items.forEach((item, ind) => {
+      item.color.forEach((frameObj) => {
+        const product = frameObj.lens.find(
+          (lenses) => lenses.linkUrl.split('/')[1] === productUrlParam
+        );
+
+        if (product) {
+          finalProduct = product;
+        }
+      });
+
+      // return item.color.lens[productIndex]
+    });
+    // console.log(finalProduct);
+    return finalProduct;
+  });
 
 // returns boolean indicating if collection is null
 export const selectIsCollectionLoaded = createSelector(

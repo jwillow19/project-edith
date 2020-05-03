@@ -4,8 +4,8 @@ import { createStructuredSelector } from 'reselect';
 
 import './product-image.styles.scss';
 
-const ProductImage = ({ match, history, imageUrl }) => {
-  // console.log(match);
+const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
+  const { color } = itemSibling;
   const imgArry = [
     '/images/shop-img/hats/blue-beanie.png',
     '/images/shop-img/hats/brown-brim.png',
@@ -20,7 +20,7 @@ const ProductImage = ({ match, history, imageUrl }) => {
     x === -100 * (imgArry.length - 1) ? setX(0) : setX(x - 100);
   };
   const handleMiniImageClick = (e) => {
-    // console.log(imgPath.target.src);
+    // console.log(e.target.src);
     let leadingUrl = match.url.split('/').slice(0, -1);
     const itemParam = e.target.src.split('/').slice(-1)[0].split('.')[0];
     leadingUrl.push(itemParam);
@@ -28,6 +28,36 @@ const ProductImage = ({ match, history, imageUrl }) => {
     console.log(leadingUrl);
     history.push(leadingUrl);
   };
+
+  var itemSiblingArray = [];
+
+  if (itemSiblingArray.length < 1) {
+    color.forEach((frameObj) => {
+      frameObj.lens.forEach((frameInstance) =>
+        itemSiblingArray.push(frameInstance)
+      );
+    });
+  }
+
+  console.log(itemSiblingArray);
+
+  // {color.forEach((frameObj) => {
+  //   frameObj.lens.forEach((frameInstance) => {
+  //     itemSiblingArray.push(frameInstance);
+  //   });
+  //   itemSiblingArray.map((sibling) => (
+  //     <div
+  //       key={sibling.id}
+  //       className='slide'
+  //       style={{ transform: `translateX(${x}%)` }}
+  //     >
+  //       <img
+  //         src={sibling.imgUrl}
+  //         onClick={(e) => handleMiniImageClick(e)}
+  //       ></img>
+  //     </div>
+  //   ));
+  // })}
 
   return (
     <div className='main-image-container'>
@@ -38,20 +68,15 @@ const ProductImage = ({ match, history, imageUrl }) => {
       <div className='mini-image-slider'>
         <ul>
           {/* List of images to map through */}
-          {imgArry.map((imgPath, index) => {
-            // let url = match.url.split('/').slice(0, -1);
-            // const itemParam = imgPath.split('/').slice(-1)[0].split('.')[0];
-            // url.push(itemParam);
-            // url = url.join('/');
-            // console.log(itemParam);
+          {itemSiblingArray.map((sibling) => {
             return (
               <div
-                key={index}
+                key={sibling.id}
                 className='slide'
                 style={{ transform: `translateX(${x}%)` }}
               >
                 <img
-                  src={imgPath}
+                  src={sibling.imgUrl}
                   onClick={(e) => handleMiniImageClick(e)}
                 ></img>
               </div>

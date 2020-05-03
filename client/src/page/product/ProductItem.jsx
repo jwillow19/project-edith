@@ -6,25 +6,40 @@ import ProductImage from './ProductImage';
 import {
   selectProduct,
   selectCollection,
+  selectProductSibling,
 } from '../../redux/selectors/shop.selector';
 
-const ProductItem = ({ match, history, item, collection, addItem }) => {
-  // console.log(match);
-  // console.log(collection);
+const ProductItem = ({
+  // match,
+  // history,
+  item,
+  collection,
+  addItem,
+  // itemSibling,
+  ...otherProps
+}) => {
+  // console.log(itemSibling);
 
-  // <div className='main-image-container'>
-  //   <div className='large-image'>
-  //     <img src={imageUrl} alt='product' />
-  //   </div>
-  //   <div className='mini-images'></div>
-  // </div>;
+  const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
 
-  const { name, imageUrl, price } = item;
+  // @functions   format string functions
+  const formatType = collection.type[0]
+    .toUpperCase()
+    .concat(collection.type.substring(1));
+
+  const formatLensColor = lens_color.split('_').join(' ');
+
   return (
     <div className='product-container'>
       <div className='main-product-container'>
+        {/* Description section */}
         <div className='description-container'>
-          <h4 className='product-title'>{name}</h4>
+          <h4 className='product-title'>{`${model_code} ${color_code}`}</h4>
+          {collection.type === 'sunglasses' ? (
+            <h4 className='product-title'>{formatLensColor}</h4>
+          ) : null}
+          {polarized ? <img src='/images/polarized.png' /> : null}
+
           <p className='description-text'>
             {' '}
             "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
@@ -34,11 +49,14 @@ const ProductItem = ({ match, history, item, collection, addItem }) => {
             aspernatur aut odit aut fugit, sed quia consequuntur ma
           </p>
         </div>
-        <ProductImage imageUrl={imageUrl} match={match} history={history} />
 
+        {/* Image section */}
+        <ProductImage imageUrl={imgUrl} {...otherProps} />
+
+        {/* Size, Color, Add-To-Bag section */}
         <div className='description-container'>
-          <h5 className='price'>{collection.title}</h5>
-          <h6 className='price'>BrandNameGoesHere</h6>
+          <h5 className='price'>{formatType}</h5>
+          <h6 className='price'>{collection.title}</h6>
           <h5 className='price'>${price} CAD</h5>
           <p>Canada - Free shipping and return on all orders</p>
 
@@ -63,6 +81,10 @@ const mapStateToProps = (state, ownProps) => ({
     ownProps.match.params.collectionId
   )(state),
   collection: selectCollection(ownProps.match.params.collectionId)(state),
+  itemSibling: selectProductSibling(
+    ownProps.match.params.productId,
+    ownProps.match.params.collectionId
+  )(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
