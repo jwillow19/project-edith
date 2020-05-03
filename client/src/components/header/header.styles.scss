@@ -7,14 +7,33 @@
   // NOTE - pushes anything below header down by 25px
   margin-bottom: 25px;
 
-  .logo-container {
+  .options-left {
+    width: 30%;
     height: 100%;
-    width: 70px;
-    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .option {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  }
+
+  .options-center {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo-container {
+      // padding: 10px 15px;
+      cursor: pointer;
+    }
   }
 
   .options {
-    width: 50%;
+    width: 30%;
     height: 100%;
     display: flex;
     align-items: center;

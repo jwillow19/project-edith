@@ -15,9 +15,24 @@ import { signOutStart } from '../../redux/actions/user';
 const Header = ({ currentUser, hidden, signOutStart }) => {
   return (
     <div className='header'>
-      <Link className='logo-container' to='/'>
-        <img src={logo} alt='logo' />
-      </Link>
+      <div className='options-left'>
+        <Link className='option' to='/men'>
+          MEN
+        </Link>
+        <Link className='option' to='/women'>
+          WOMEN
+        </Link>
+        <Link className='option' to='/search'>
+          SEARCH
+        </Link>
+      </div>
+
+      <div className='options-center'>
+        <Link className='option' to='/'>
+          <img src={logo} alt='logo' />
+        </Link>
+      </div>
+
       <div className='options'>
         <Link className='option' to='/shop'>
           SHOP

@@ -6,28 +6,6 @@ import './product-image.styles.scss';
 
 const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
   const { color } = itemSibling;
-  const imgArry = [
-    '/images/shop-img/hats/blue-beanie.png',
-    '/images/shop-img/hats/brown-brim.png',
-    '/images/shop-img/hats/blue-beanie.png',
-  ];
-  const [x, setX] = useState(0);
-
-  const slideLeft = () => {
-    x === 0 ? setX(-100 * (imgArry.length - 1)) : setX(x + 100);
-  };
-  const slideRight = () => {
-    x === -100 * (imgArry.length - 1) ? setX(0) : setX(x - 100);
-  };
-  const handleMiniImageClick = (e) => {
-    // console.log(e.target.src);
-    let leadingUrl = match.url.split('/').slice(0, -1);
-    const itemParam = e.target.src.split('/').slice(-1)[0].split('.')[0];
-    leadingUrl.push(itemParam);
-    leadingUrl = leadingUrl.join('/');
-    console.log(leadingUrl);
-    history.push(leadingUrl);
-  };
 
   var itemSiblingArray = [];
 
@@ -39,25 +17,22 @@ const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
     });
   }
 
-  console.log(itemSiblingArray);
+  const [x, setX] = useState(0);
 
-  // {color.forEach((frameObj) => {
-  //   frameObj.lens.forEach((frameInstance) => {
-  //     itemSiblingArray.push(frameInstance);
-  //   });
-  //   itemSiblingArray.map((sibling) => (
-  //     <div
-  //       key={sibling.id}
-  //       className='slide'
-  //       style={{ transform: `translateX(${x}%)` }}
-  //     >
-  //       <img
-  //         src={sibling.imgUrl}
-  //         onClick={(e) => handleMiniImageClick(e)}
-  //       ></img>
-  //     </div>
-  //   ));
-  // })}
+  const slideLeft = () => {
+    x === 0 ? setX(-100 * (itemSiblingArray.length - 1)) : setX(x + 100);
+  };
+  const slideRight = () => {
+    x === -100 * (itemSiblingArray.length - 1) ? setX(0) : setX(x - 100);
+  };
+  const handleMiniImageClick = (e) => {
+    let leadingUrl = match.url.split('/').slice(0, -1);
+    const itemParam = e.target.src.split('/').slice(-1)[0].split('.')[0];
+    leadingUrl.push(itemParam);
+    leadingUrl = leadingUrl.join('/');
+    console.log(leadingUrl);
+    history.push(leadingUrl);
+  };
 
   return (
     <div className='main-image-container'>
