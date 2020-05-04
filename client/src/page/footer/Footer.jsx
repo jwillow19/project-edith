@@ -1,131 +1,126 @@
 import React from 'react';
-import './footer.styles.scss';
+// import './footer.styles.scss';
+import './footer-grid.styles.scss';
 
 const Footer = () => {
   return (
-    <div id='footer-wrapper'>
-      <footer id='footer' class='container'>
-        <div class='row'>
-          <div class='col-3 col-6-medium col-12-small'>
-            {/* Links */}
-            <section class='widget links'>
-              <h3>Random Stuff</h3>
-              <ul class='style2'>
-                <li>
-                  <a href='#'>Etiam feugiat condimentum</a>
-                </li>
-                <li>
-                  <a href='#'>Aliquam imperdiet suscipit odio</a>
-                </li>
-                <li>
-                  <a href='#'>Sed porttitor cras in erat nec</a>
-                </li>
-                <li>
-                  <a href='#'>Felis varius pellentesque potenti</a>
-                </li>
-                <li>
-                  <a href='#'>Nullam scelerisque blandit leo</a>
-                </li>
-              </ul>
-            </section>
-          </div>
-          <div class='col-3 col-6-medium col-12-small'>
-            {/*Links */}
-            <section class='widget links'>
-              <h3>Random Stuff</h3>
-              <ul class='style2'>
-                <li>
-                  <a href='#'>Etiam feugiat condimentum</a>
-                </li>
-                <li>
-                  <a href='#'>Aliquam imperdiet suscipit odio</a>
-                </li>
-                <li>
-                  <a href='#'>Sed porttitor cras in erat nec</a>
-                </li>
-                <li>
-                  <a href='#'>Felis varius pellentesque potenti</a>
-                </li>
-                <li>
-                  <a href='#'>Nullam scelerisque blandit leo</a>
-                </li>
-              </ul>
-            </section>
-          </div>
-          <div class='col-3 col-6-medium col-12-small'>
-            {/*Links */}
-            <section class='widget links'>
-              <h3>Random Stuff</h3>
-              <ul class='style2'>
-                <li>
-                  <a href='#'>Etiam feugiat condimentum</a>
-                </li>
-                <li>
-                  <a href='#'>Aliquam imperdiet suscipit odio</a>
-                </li>
-                <li>
-                  <a href='#'>Sed porttitor cras in erat nec</a>
-                </li>
-                <li>
-                  <a href='#'>Felis varius pellentesque potenti</a>
-                </li>
-                <li>
-                  <a href='#'>Nullam scelerisque blandit leo</a>
-                </li>
-              </ul>
-            </section>
-          </div>
-          <div class='col-3 col-6-medium col-12-small'>
-            {/* Contact */}
-            <section class='widget contact last'>
-              <h3>Contact Us</h3>
-              <ul>
-                <li>
-                  <a href='#' class='icon brands fa-twitter'>
-                    <span class='label'>Twitter</span>
-                  </a>
-                </li>
-                <li>
-                  <a href='#' class='icon brands fa-facebook-f'>
-                    <span class='label'>Facebook</span>
-                  </a>
-                </li>
-                <li>
-                  <a href='#' class='icon brands fa-instagram'>
-                    <span class='label'>Instagram</span>
-                  </a>
-                </li>
-                <li>
-                  <a href='#' class='icon brands fa-dribbble'>
-                    <span class='label'>Dribbble</span>
-                  </a>
-                </li>
-                <li>
-                  <a href='#' class='icon brands fa-pinterest'>
-                    <span class='label'>Pinterest</span>
-                  </a>
-                </li>
-              </ul>
-              <p>
-                1234 Fictional Road
-                <br />
-                Nashville, TN 00000
-                <br />
-                (800) 555-0000
-              </p>
-            </section>
-          </div>
+    <div className='footer'>
+      <div className='general-information-row'>
+        <div className='col-1-of-6'>
+          <ul className='footer__list'>
+            <h5>Products</h5>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Sunglasses
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Eyeglasses
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Accessories
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Gift Cards
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class='row'>
-          <div class='col-12'>
-            <div id='copyright'>
-              <ul class='menu'>
-                <li>&copy; Untitled. All rights reserved</li>
-              </ul>
-            </div>
-          </div>
+        <div className='col-1-of-6'>
+          <ul className='footer__list'>
+            <h5>Eyecare 101</h5>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Our Lenses
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Vision Guide
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Measure your PD
+              </a>
+            </li>
+          </ul>
         </div>
-      </footer>
+        <div className='col-1-of-6'>
+          <ul className='footer__list'>
+            <h5>About Us</h5>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Out Story
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Company Vision
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className='col-1-of-6'>
+          <ul className='footer__list'>
+            <h5>Offers & Discount</h5>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Insurance
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Promotional Items
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className='col-2-of-6'>
+          <ul className='footer__list'>
+            <h5>Need a hand? Contact us!</h5>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Email:
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#' className='footer__link'>
+                Text:
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className='social-icon-row'>
+        <div className='social-icons'>
+          <ul className='footer__list'>
+            <li className='footer__item'>
+              <a href='#'>
+                <i className='fa fa-facebook'></i>
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#'>
+                <i className='fa fa-github'></i>
+              </a>
+            </li>
+            <li className='footer__item'>
+              <a href='#'>
+                <i className='fa fa-linkedin'></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

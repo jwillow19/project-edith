@@ -1,0 +1,59 @@
+.nav-wrapper {
+  display: flex;
+  margin: 0 auto;
+
+  .nav-menu {
+    position: relative;
+    width: 100%;
+    top: 38px;
+    left: 0;
+    right: 0;
+    //   display: -webkit-box;
+    //   display: -ms-flexbox;
+    //   display: flex;
+    //   //   -webkit-box-pack: justify;
+    //   //   -ms-flex-pack: justify;
+    //   justify-content: space-between;
+    //   //   -webkit-box-orient: horizontal;
+    //   //   -webkit-box-direction: normal;
+    //   //   -ms-flex-direction: row;
+    //   flex-direction: row;
+    //   max-width: 1920px;
+    //   height: 300px;
+    //   //   visibility: hidden;
+    //   //   opacity: 0;
+    //   pointer-events: none;
+    //   //   -webkit-transition-property: opacity, visibility;
+    //   -o-transition-property: opacity, visibility;
+    //   transition-property: opacity, visibility;
+    //   -webkit-transition-duration: 0.6s, 0s;
+    //   -o-transition-duration: 0.6s, 0s;
+    //   transition-duration: 0.6s, 0s;
+    //   -webkit-transition-timing-function: ease-in-out;
+    //   -o-transition-timing-function: ease-in-out;
+    //   transition-timing-function: ease-in-out;
+    //   -webkit-transition-delay: 0s, 0.6s;
+    //   -o-transition-delay: 0s, 0.6s;
+    //   transition-delay: 0s, 0.6s;
+
+    &__list-item {
+      width: 50%;
+      display: inline-block;
+      list-style: none;
+
+      .nav-link {
+        background: #f5f6fb;
+        position: relative;
+        width: 100%;
+        padding-top: 50px;
+        height: inherit;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position-y: 44px;
+        padding-bottom: 54%;
+        height: 100%;
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@ import React from 'react';
 import MenuItem from '../menu-item/MenuItem';
 import Brands from './Brands';
 import Trending from './Trending';
+import Footer from '../../page/footer/Footer';
+
 import './directory.styles.scss';
 import { connect } from 'react-redux';
 import { selectDirectorySections } from '../../redux/selectors/directory.selector';
@@ -18,6 +20,7 @@ const DirectoryMenu = ({ sections }) => {
       ))}
       <Trending />
       <Brands />
+      <Footer />
     </div>
   );
 };
