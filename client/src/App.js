@@ -18,6 +18,7 @@ import {
 import { connect } from 'react-redux';
 
 import RB_DATA from './page/shop/rayban-sg';
+import SUNGLASSES_DATA from './page/shop/sunglasses';
 import { addDocumentToCollection } from './firebase/db';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from './redux/selectors/user.selector';
@@ -28,7 +29,7 @@ import './App.css';
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
-    // addDocumentToCollection('collections', RB_DATA);
+    addDocumentToCollection('collections', SUNGLASSES_DATA);
   }, [checkUserSession]);
 
   return (

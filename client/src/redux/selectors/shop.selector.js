@@ -23,13 +23,20 @@ export const selectCollectionsForPreview = createSelector(
     collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
-// Select the collection which has matching key value as the url-param
+// @selector    Select the collection which has matching key value as the url-param
 export const selectCollection = (collectionUrlParam) =>
   createSelector([selectShopCollections], (collections) =>
     collections ? collections[collectionUrlParam] : null
   );
 
-// @selector  selects sibling of product
+// @selector    selects products in collection based on gender: male, female, both
+export const selectCollectionGender = (collectionUrlParam, genderUrlParam) =>
+  createSelector([selectCollection(collectionUrlParam)], (collection) =>
+    collection.items.filter(
+      (item) => item.gender === genderUrlParam || item.gender === 'both'
+    )
+  );
+// @selector    selects sibling of product
 export const selectProductSibling = (productUrlParam, collectionUrlParam) =>
   createSelector([selectCollection(collectionUrlParam)], (collection) =>
     collection.items.find((item) => productUrlParam.includes(item.model))
@@ -54,6 +61,16 @@ export const selectProduct = (productUrlParam, collectionUrlParam) =>
     });
     // console.log(finalProduct);
     return finalProduct;
+  });
+
+// @selector    selects the model of the product
+export const selectProductModel = (productUrlParam, collectionUrlParam) =>
+  createSelector([selectCollection(collectionUrlParam)], (collection) => {
+    const productModel = collection.items.find((item, ind) =>
+      productUrlParam.includes(item.model)
+    );
+    // console.log(finalProduct);
+    return productModel;
   });
 
 // returns boolean indicating if collection is null

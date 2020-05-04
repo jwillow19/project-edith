@@ -5,27 +5,32 @@ import { connect } from 'react-redux';
 import ProductImage from './ProductImage';
 import {
   selectProduct,
-  selectCollection,
   selectProductSibling,
+  selectProductModel,
 } from '../../redux/selectors/shop.selector';
 
 const ProductItem = ({
   // match,
   // history,
   item,
-  collection,
+  productModel,
+  // collection,
   addItem,
   // itemSibling,
   ...otherProps
 }) => {
-  // console.log(itemSibling);
+  // console.log(match);
+  // console.log(item);
+  // console.log(collection);
+  console.log(productModel);
 
   const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
+  const { brand, material, shape, frameType, productType } = productModel;
 
   // @functions   format string functions
-  const formatType = collection.type[0]
+  const formatType = productType[0]
     .toUpperCase()
-    .concat(collection.type.substring(1));
+    .concat(productType.substring(1));
 
   const formatLensColor = lens_color.split('_').join(' ');
 
@@ -35,7 +40,7 @@ const ProductItem = ({
         {/* Description section */}
         <div className='description-container'>
           <h4 className='product-title'>{`${model_code} ${color_code}`}</h4>
-          {collection.type === 'sunglasses' ? (
+          {productType === 'sunglasses' ? (
             <h4 className='product-title'>{formatLensColor}</h4>
           ) : null}
           {polarized ? <img src='/images/polarized.png' /> : null}
@@ -56,7 +61,7 @@ const ProductItem = ({
         {/* Size, Color, Add-To-Bag section */}
         <div className='description-container'>
           <h5 className='price'>{formatType}</h5>
-          <h6 className='price'>{collection.title}</h6>
+          <h6 className='price'>{brand}</h6>
           <h5 className='price'>${price} CAD</h5>
           <p>Canada - Free shipping and return on all orders</p>
 
@@ -80,8 +85,13 @@ const mapStateToProps = (state, ownProps) => ({
     ownProps.match.params.productId,
     ownProps.match.params.collectionId
   )(state),
-  collection: selectCollection(ownProps.match.params.collectionId)(state),
+  // collection: selectCollection(ownProps.match.params.collectionId)(state),
   itemSibling: selectProductSibling(
+    ownProps.match.params.productId,
+    ownProps.match.params.collectionId
+  )(state),
+
+  productModel: selectProductModel(
     ownProps.match.params.productId,
     ownProps.match.params.collectionId
   )(state),

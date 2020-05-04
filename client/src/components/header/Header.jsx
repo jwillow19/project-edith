@@ -16,10 +16,11 @@ import { signOutStart } from '../../redux/actions/user';
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
   const [open, setOpen] = useState({
+    productType: '',
     eyewearOpen: false,
     contactsOpen: false,
   });
-  const { eyewearOpen, contactsOpen } = open;
+  const { eyewearOpen, contactsOpen, productType } = open;
 
   return (
     <div className='header'>
@@ -69,18 +70,40 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
       <div className='row'>
         <div className='nav-links'>
           <Link className='option' to='/'>
-            <a onClick={() => setOpen({ ...open, eyewearOpen: !eyewearOpen })}>
+            <a
+              onClick={() =>
+                setOpen({
+                  ...open,
+                  eyewearOpen: !eyewearOpen,
+                  productType: 'eyeglasses',
+                })
+              }
+            >
               Eyeglasses
             </a>
           </Link>
           <Link className='option' to='/'>
-            <a onClick={() => setOpen({ ...open, eyewearOpen: !eyewearOpen })}>
+            <a
+              onClick={() =>
+                setOpen({
+                  ...open,
+                  eyewearOpen: !eyewearOpen,
+                  productType: 'sunglasses',
+                })
+              }
+            >
               Sunglasses
             </a>
           </Link>
           <Link className='option' to='/'>
             <a
-              onClick={() => setOpen({ ...open, contactsOpen: !contactsOpen })}
+              onClick={() =>
+                setOpen({
+                  ...open,
+                  contactsOpen: !contactsOpen,
+                  productType: 'contacts',
+                })
+              }
             >
               Contact Lenses
             </a>
@@ -88,7 +111,7 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
         </div>
       </div>
 
-      {eyewearOpen ? <EyewearDropdownMenu /> : null}
+      {eyewearOpen ? <EyewearDropdownMenu productType={productType} /> : null}
     </div>
   );
 };
