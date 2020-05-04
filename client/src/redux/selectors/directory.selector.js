@@ -6,3 +6,9 @@ export const selectDirectorySections = createSelector(
   [selectDirectory],
   (directory) => directory.sections
 );
+
+//  @selector   selector dropdownMenu
+export const selectDropdown = createSelector(
+  [selectDirectory],
+  (directory) => directory.dropdownMenu
+);

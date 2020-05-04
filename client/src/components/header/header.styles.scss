@@ -83,6 +83,10 @@ $gutter-horizontal: 6rem;
         justify-content: center;
         align-items: center;
       }
+
+      &__wrapper {
+        padding: 10px;
+      }
     }
 
     .options-left {

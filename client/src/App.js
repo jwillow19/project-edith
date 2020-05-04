@@ -8,6 +8,10 @@ import Header from './components/header/Header';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './redux/selectors/user.selector';
+import { checkUserSession } from './redux/actions/user';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -17,19 +21,18 @@ import {
 
 import { connect } from 'react-redux';
 
+// JSON DATA
 import RB_DATA from './page/shop/rayban-sg';
 import SUNGLASSES_DATA from './page/shop/sunglasses';
+import EYEGLASSES_DATA from './page/shop/eyeglasses';
 import { addDocumentToCollection } from './firebase/db';
-import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from './redux/selectors/user.selector';
-import { checkUserSession } from './redux/actions/user';
 
 import './App.css';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
-    addDocumentToCollection('collections', SUNGLASSES_DATA);
+    // addDocumentToCollection('collections', EYEGLASSES_DATA);
   }, [checkUserSession]);
 
   return (

@@ -1,4 +1,7 @@
+import { TOGGLE_DROPDOWN } from '../actions/types';
+
 const initialState = {
+  dropdownMenu: false,
   sections: [
     {
       title: 'womens',
@@ -38,6 +41,11 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type } = action;
   switch (type) {
+    case TOGGLE_DROPDOWN:
+      return {
+        ...state,
+        dropdownMenu: !state.dropdownMenu,
+      };
     default:
       return state;
   }

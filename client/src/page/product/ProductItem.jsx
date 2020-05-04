@@ -19,11 +19,6 @@ const ProductItem = ({
   // itemSibling,
   ...otherProps
 }) => {
-  // console.log(match);
-  // console.log(item);
-  // console.log(collection);
-  console.log(productModel);
-
   const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
   const { brand, material, shape, frameType, productType } = productModel;
 

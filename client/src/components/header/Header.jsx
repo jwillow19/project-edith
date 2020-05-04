@@ -12,15 +12,25 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCartHidden } from '../../redux/selectors/cart.selector';
 import { selectCurrentUser } from '../../redux/selectors/user.selector';
-import { signOutStart } from '../../redux/actions/user';
+import { selectDropdown } from '../../redux/selectors/directory.selector';
 
-const Header = ({ currentUser, hidden, signOutStart }) => {
-  const [open, setOpen] = useState({
-    productType: '',
-    eyewearOpen: false,
-    contactsOpen: false,
-  });
-  const { eyewearOpen, contactsOpen, productType } = open;
+import { signOutStart } from '../../redux/actions/user';
+import { toggleDropdown } from '../../redux/actions/directory';
+
+const Header = ({
+  currentUser,
+  hidden,
+  signOutStart,
+  dropdownMenu,
+  toggleDropdown,
+}) => {
+  const [catalog, setCatalog] = useState('');
+  // const { eyewearOpen, contactsOpen, productType } = open;
+
+  const handleDropdownClick = (productType) => {
+    toggleDropdown();
+    setCatalog(productType);
+  };
 
   return (
     <div className='header'>
@@ -69,49 +79,22 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
 
       <div className='row'>
         <div className='nav-links'>
-          <Link className='option' to='/'>
-            <a
-              onClick={() =>
-                setOpen({
-                  ...open,
-                  eyewearOpen: !eyewearOpen,
-                  productType: 'eyeglasses',
-                })
-              }
-            >
-              Eyeglasses
-            </a>
-          </Link>
-          <Link className='option' to='/'>
-            <a
-              onClick={() =>
-                setOpen({
-                  ...open,
-                  eyewearOpen: !eyewearOpen,
-                  productType: 'sunglasses',
-                })
-              }
-            >
-              Sunglasses
-            </a>
-          </Link>
-          <Link className='option' to='/'>
-            <a
-              onClick={() =>
-                setOpen({
-                  ...open,
-                  contactsOpen: !contactsOpen,
-                  productType: 'contacts',
-                })
-              }
-            >
+          <div className='nav-links__wrapper'>
+            <a onClick={() => handleDropdownClick('eyeglasses')}>Eyeglasses</a>
+          </div>
+          <div className='nav-links__wrapper'>
+            <a onClick={() => handleDropdownClick('sunglasses')}>Sunglasses</a>
+          </div>
+
+          <div className='nav-links__wrapper'>
+            <a onClick={() => handleDropdownClick('contacts')}>
               Contact Lenses
             </a>
-          </Link>
+          </div>
         </div>
       </div>
 
-      {eyewearOpen ? <EyewearDropdownMenu productType={productType} /> : null}
+      {dropdownMenu ? <EyewearDropdownMenu productType={catalog} /> : null}
     </div>
   );
 };
@@ -124,10 +107,12 @@ const Header = ({ currentUser, hidden, signOutStart }) => {
 const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
   currentUser: selectCurrentUser,
+  dropdownMenu: selectDropdown,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
+  toggleDropdown: () => dispatch(toggleDropdown()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
