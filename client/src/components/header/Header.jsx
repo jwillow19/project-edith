@@ -73,9 +73,6 @@ const Header = ({
           <Link className='option' to='/women'>
             WOMEN
           </Link>
-          <Link className='option' to='/search'>
-            SEARCH
-          </Link>
         </div>
 
         <div className='options-center'>

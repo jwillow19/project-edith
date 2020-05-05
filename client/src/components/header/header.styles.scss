@@ -90,7 +90,8 @@ $gutter-horizontal: 6rem;
 
     .options-left {
       @include respond(tab-port) {
-        width: 30%;
+        // width: 20%;
+        display: none;
         // padding: 0 3rem;
       }
       width: 30%;
@@ -101,15 +102,12 @@ $gutter-horizontal: 6rem;
       .option {
         padding: 10px 15px;
         cursor: pointer;
-        @include respond(tab-port) {
-          padding: 0 5px;
-        }
       }
     }
 
     .options-center {
       @include respond(tab-port) {
-        width: 35%;
+        width: 50%;
         // padding: 0 3rem;
       }
       width: 40%;
@@ -129,7 +127,7 @@ $gutter-horizontal: 6rem;
 
     .options-right {
       @include respond(tab-port) {
-        width: 30%;
+        width: 40%;
         // padding: 0 3rem;
       }
       width: 30%;
@@ -141,7 +139,7 @@ $gutter-horizontal: 6rem;
 
       .option {
         @include respond(tab-port) {
-          padding: 0 3px;
+          padding: 0 10px;
         }
 
         padding: 10px 15px;
