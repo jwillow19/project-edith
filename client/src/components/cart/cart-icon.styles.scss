@@ -1,4 +1,9 @@
 .cart-icon {
+  @media only screen and (max-width: 37.5em) {
+    width: 10%;
+    padding: 0;
+  }
+
   width: 45px;
   height: 45px;
   position: relative;

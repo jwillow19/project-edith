@@ -1,4 +1,9 @@
 .custom-button {
+  @media only screen and (max-width: 37.5em) {
+    width: 10%;
+    padding: 0;
+  }
+
   min-width: 165px;
   width: auto;
   height: 50px;

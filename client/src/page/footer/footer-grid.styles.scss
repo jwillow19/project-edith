@@ -49,6 +49,10 @@ $gutter-horizontal: 6rem;
   font-size: 1.4rem;
   width: 100%;
 
+  @include respond(tab-port) {
+    padding: 5rem 0;
+  }
+
   &__list {
     list-style: none;
   }
@@ -66,9 +70,7 @@ $gutter-horizontal: 6rem;
     &:link,
     &:visited {
       color: $color-grey-dark-3;
-      //   background-color: $color-grey-dark-3;
       text-decoration: none;
-      //   text-transform: uppercase;
       display: inline-block;
       transition: all 0.2s;
     }
@@ -82,7 +84,6 @@ $gutter-horizontal: 6rem;
   .general-information-row {
     max-width: $grid-width;
     margin: 0 auto;
-    // background-color: red($color: #ffffff);
     display: flex;
 
     // &:not(:last-child) {
@@ -93,8 +94,7 @@ $gutter-horizontal: 6rem;
     // }
 
     @include respond(tab-port) {
-      max-width: 50rem;
-      padding: 0 3rem;
+      max-width: 80rem;
     }
 
     @include clearfix;
@@ -138,6 +138,12 @@ $gutter-horizontal: 6rem;
     margin: 2rem auto;
     background-color: red($color: #000000);
 
+    @include respond(tab-port) {
+      max-width: 50rem;
+      padding: 0 3rem;
+    }
+
+    @include clearfix;
     .social-icons {
       // justify-content: center;
       // align-items: center;
@@ -175,6 +181,9 @@ $gutter-horizontal: 6rem;
 
       &:not(:last-child) {
         margin-right: $gutter-horizontal;
+      }
+      @include respond(tab-port) {
+        width: 100% !important;
       }
     }
 

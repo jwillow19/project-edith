@@ -55,19 +55,18 @@ $gutter-horizontal: 6rem;
   .row {
     max-width: $grid-width;
     margin: 0 auto;
-    // background-color: red($color: #ffffff);
     display: flex;
 
-    // &:not(:last-child) {
-    //   margin-bottom: $gutter-vertical;
-    //   @include respond(tab-port) {
-    //     margin-bottom: $gutter-vertical-small;
-    //   }
-    // }
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      // @include respond(tab-port) {
+      //   margin-bottom: $gutter-vertical-small;
+      // }
+    }
 
     @include respond(tab-port) {
-      max-width: 50rem;
-      padding: 0 3rem;
+      max-width: 80rem;
+      padding: 0 1rem;
     }
 
     @include clearfix;
@@ -90,6 +89,10 @@ $gutter-horizontal: 6rem;
     }
 
     .options-left {
+      @include respond(tab-port) {
+        width: 30%;
+        // padding: 0 3rem;
+      }
       width: 30%;
       height: auto;
       display: flex;
@@ -98,10 +101,17 @@ $gutter-horizontal: 6rem;
       .option {
         padding: 10px 15px;
         cursor: pointer;
+        @include respond(tab-port) {
+          padding: 0 5px;
+        }
       }
     }
 
     .options-center {
+      @include respond(tab-port) {
+        width: 35%;
+        // padding: 0 3rem;
+      }
       width: 40%;
       height: auto;
       display: flex;
@@ -111,10 +121,17 @@ $gutter-horizontal: 6rem;
       .logo-container {
         // padding: 10px 15px;
         cursor: pointer;
+        @include respond(tab-port) {
+          padding: 0 10px;
+        }
       }
     }
 
     .options-right {
+      @include respond(tab-port) {
+        width: 30%;
+        // padding: 0 3rem;
+      }
       width: 30%;
       height: 100%;
       display: flex;
@@ -123,6 +140,10 @@ $gutter-horizontal: 6rem;
       justify-content: flex-end;
 
       .option {
+        @include respond(tab-port) {
+          padding: 0 3px;
+        }
+
         padding: 10px 15px;
         cursor: pointer;
       }
