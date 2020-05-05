@@ -97,4 +97,3 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);
-// export default ProductItem;

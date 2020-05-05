@@ -11,8 +11,9 @@ import BrandCollectionContainer from '../collection/BrandCollection.container';
 import CollectionPageContainer from '../../page/collection/CollectionPage.container';
 
 const Shop = ({ match, location, fetchCollectionsStart }) => {
-  // console.log(match);
-  // console.log(location);
+  console.log('Shop page pickup');
+  console.log(match);
+  console.log(location);
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
@@ -30,12 +31,6 @@ const Shop = ({ match, location, fetchCollectionsStart }) => {
         exact
         path={`${match.path}/:collectionId/:genderId`}
         component={CollectionPageContainer}
-      />
-
-      <Route
-        exact
-        path={`${match.path}/:collectionId/:productId`}
-        component={ProductItem}
       />
     </div>
   );
