@@ -5,15 +5,20 @@ import OverviewPage from '../../components/collections/OverviewPage';
 import { connect } from 'react-redux';
 import { fetchCollectionsStart } from '../../redux/actions/shop';
 
-import ProductItem from '../product/ProductItem';
-import BrandProductItem from '../../page/product/ProductItem';
-import BrandCollectionContainer from '../collection/BrandCollection.container';
+import BrandPageContainer from '../../page/collection/BrandPage.container';
 import CollectionPageContainer from '../../page/collection/CollectionPage.container';
 
+// TRYING to aggregate all routes in shop
+
+import BrandCollectionContainer from '../../page/collection/BrandCollection.container';
+import BrandProductItem from '../product/BrandProductItem';
+
+import GenderCollectionContainer from '../../page/collection/GenderCollection.container';
+import ProductItem from '../product/ProductItem';
+
 const Shop = ({ match, location, fetchCollectionsStart }) => {
-  console.log('Shop page pickup');
-  console.log(match);
-  console.log(location);
+  // console.log('Shop page pickup');
+  // console.log(match);
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
@@ -23,7 +28,7 @@ const Shop = ({ match, location, fetchCollectionsStart }) => {
       <Route exact path={`${match.path}`} component={OverviewPage} />
       <Route
         path={`${match.path}/:collectionId`}
-        component={BrandCollectionContainer}
+        component={BrandPageContainer}
       />
 
       <Route

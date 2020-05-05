@@ -3,30 +3,22 @@ import { withRouter } from 'react-router-dom';
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, routeName, match, history }) => {
-  // const { name, imageUrl, price, linkUrl } = item;
-
   // color DTYPE: ARRAY
   // Goal: grab the first whole nested object in each item - IE: first lens option of first color
-  const { color, material, type, model, shape } = item;
+
+  const { color, model, productType, gender } = item;
+
   const lens = color[0].lens[0];
-  const {
-    frame_color,
-    color_code,
-    lens_color,
-    isPolarize,
-    price,
-    imgUrl,
-    linkUrl,
-  } = lens;
+  const { price, imgUrl, linkUrl } = lens;
 
   // [NOTE] function checks where the currentRoute is
   const handleClick = () => {
-    // case: currentRoute is collection page (eg. /shop/hats)
-    if (match.url.split('/')[-1] === routeName) {
+    // case: currentRoute is /shop/collectionId/genderId
+    if (match.url.split('/').length === 4) {
       history.push(`${match.url}${linkUrl}`);
-    } else {
-      // case: currentRoute is in CollectionOverview (eg. /shop)
-      history.push(`${match.url}/${routeName}${linkUrl}`);
+    } else if (match.url.split('/').length === 3) {
+      // case: currentRoute is /shop/brandId
+      history.push(`${productType}/${gender}${linkUrl}`);
     }
   };
 

@@ -8,12 +8,12 @@ import ProductItem from '../product/ProductItem';
 // <Route exact path={`${match.path}/:collectionId`} component={BrandCollection} />
 // <Route path={`${match.path}/:productId`} component={ProductItem} />
 const CollectionPage = ({ match, location }) => {
-  console.log('collectionPage fired');
-  console.log(match);
+  // console.log('collectionPage fired');
+  // console.log(match);
   return (
     <div>
       <Route exact path={`${match.path}`} component={GenderCollection} />
-      <Route path={`${match.path}/:productId`} component={ProductItem} />
+      <Route exact path={`${match.path}/:productId`} component={ProductItem} />
     </div>
   );
 };

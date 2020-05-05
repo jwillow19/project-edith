@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import BrandCollection from './BrandCollection';
 import WithSpinner from '../../components/spinner/WithSpinner';
 import { compose } from 'redux';

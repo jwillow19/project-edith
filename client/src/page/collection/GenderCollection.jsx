@@ -18,7 +18,8 @@ const GenderCollection = ({
   // console.log(collection);
   // console.log(genderedCollection);
 
-  const { title } = collection;
+  const { title, routeName } = collection;
+  console.log(collection);
   // const { items } = genderedCollection;
   // <Route
   //       path={`${match.path}/:collectionId/:productId`}
@@ -29,7 +30,7 @@ const GenderCollection = ({
       <h2 className='title'>{title}</h2>
       <div className='items'>
         {genderedCollection.map((item) => (
-          <CollectionItem key={item.id} item={item} />
+          <CollectionItem key={item.id} item={item} routeName={routeName} />
         ))}
       </div>
     </div>

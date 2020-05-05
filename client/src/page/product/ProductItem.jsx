@@ -10,7 +10,7 @@ import {
 } from '../../redux/selectors/shop.selector';
 
 const ProductItem = ({
-  match,
+  // match,
   // history,
   item,
   productModel,
@@ -19,7 +19,6 @@ const ProductItem = ({
   // itemSibling,
   ...otherProps
 }) => {
-  console.log(match);
   const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
   const { brand, material, shape, frameType, productType } = productModel;
 
