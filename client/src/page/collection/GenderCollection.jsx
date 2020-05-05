@@ -8,7 +8,12 @@ import {
 
 import './collection.styles.scss';
 
-const Collection = ({ match, location, collection, genderedCollection }) => {
+const GenderCollection = ({
+  match,
+  location,
+  collection,
+  genderedCollection,
+}) => {
   // console.log(match);
   // console.log(collection);
   // console.log(genderedCollection);
@@ -39,4 +44,4 @@ const mapStateToProps = (state, ownProps) => ({
     ownProps.match.params.genderId
   )(state),
 });
-export default connect(mapStateToProps)(Collection);
+export default connect(mapStateToProps)(GenderCollection);

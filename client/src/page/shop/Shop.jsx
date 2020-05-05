@@ -5,6 +5,9 @@ import OverviewPage from '../../components/collections/OverviewPage';
 import { connect } from 'react-redux';
 import { fetchCollectionsStart } from '../../redux/actions/shop';
 
+import ProductItem from '../product/ProductItem';
+import BrandProductItem from '../../page/product/ProductItem';
+import BrandCollectionContainer from '../collection/BrandCollection.container';
 import CollectionPageContainer from '../../page/collection/CollectionPage.container';
 
 const Shop = ({ match, location, fetchCollectionsStart }) => {
@@ -18,12 +21,21 @@ const Shop = ({ match, location, fetchCollectionsStart }) => {
     <div>
       <Route exact path={`${match.path}`} component={OverviewPage} />
       <Route
-        path={`${match.path}/:collectionId/`}
-        component={CollectionPageContainer}
+        exact
+        path={`${match.path}/:collectionId`}
+        component={BrandCollectionContainer}
       />
+
       <Route
+        exact
         path={`${match.path}/:collectionId/:genderId`}
         component={CollectionPageContainer}
+      />
+
+      <Route
+        exact
+        path={`${match.path}/:collectionId/:productId`}
+        component={ProductItem}
       />
     </div>
   );
