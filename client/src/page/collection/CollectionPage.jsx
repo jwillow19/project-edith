@@ -13,7 +13,7 @@ const CollectionPage = ({ match, location }) => {
   return (
     <div>
       <Route exact path={`${match.path}`} component={GenderCollection} />
-      <Route exact path={`${match.path}/:productId`} component={ProductItem} />
+      <Route path={`${match.path}/:productId`} component={ProductItem} />
     </div>
   );
 };
