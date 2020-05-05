@@ -5,12 +5,13 @@ import './trending.styles.scss';
 const INITIAL_STATE = {
   x: 0,
   trending: [
-    '/images/designer-brands/burberry.png',
-    '/images/designer-brands/dolce.png',
-    '/images/designer-brands/oakley.png',
-    '/images/designer-brands/dior.png',
-    '/images/designer-brands/tiffany.png',
-    '/images/designer-brands/versace.png',
+    '/images/shop-img/eyeglasses/burberry/BE12821001.png',
+    '/images/shop-img/eyeglasses/dolce/DG13241334.png',
+    '/images/shop-img/eyeglasses/versace/VE12641436.png',
+    '/images/shop-img/eyeglasses/oakley/OX3222322203.png',
+    '/images/shop-img/sunglasses/BE430738314L.png',
+    '/images/shop-img/sunglasses/RB302500157.png',
+    '/images/shop-img/eyeglasses/prada/PR62UVYEE1O1.png',
   ],
 };
 
@@ -43,12 +44,9 @@ const TrendingSection = ({ match, history }) => {
   const { x, trending } = state;
 
   const handleMiniImageClick = (e) => {
-    let leadingUrl = match.url.split('/').slice(0, -1);
-    const itemParam = e.target.src.split('/').slice(-1)[0].split('.')[0];
-    leadingUrl.push(itemParam);
-    leadingUrl = leadingUrl.join('/');
-    console.log(leadingUrl);
-    history.push(leadingUrl);
+    let fullPath = e.target.src.split('/').slice(-3).join('/').split('.')[0];
+    fullPath = '/shop/'.concat(fullPath);
+    history.push(fullPath);
   };
 
   return (

@@ -2,6 +2,7 @@ import { TOGGLE_DROPDOWN } from '../actions/types';
 
 const initialState = {
   dropdownMenu: false,
+
   sections: [
     {
       title: 'womens',

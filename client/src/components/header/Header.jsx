@@ -6,7 +6,8 @@ import logo from '../../assets/refine-logo.png';
 import { connect } from 'react-redux';
 import CartIcon from '../cart/CartIcon';
 import CartDropdown from '../cart/CartDropdown';
-import EyewearDropdownMenu from './Dropdown';
+import EyewearDropdownMenu from './Eyewear.dropdown.menu';
+import ContactLenseDropdownMenu from './ContactLense.dropdown.menu';
 
 import { createStructuredSelector } from 'reselect';
 
@@ -24,12 +25,42 @@ const Header = ({
   dropdownMenu,
   toggleDropdown,
 }) => {
-  const [catalog, setCatalog] = useState('');
+  const [catalog, setCatalog] = useState({
+    productType: '',
+    isEyewear: false,
+    isSunwear: false,
+    isContact: false,
+  });
   // const { eyewearOpen, contactsOpen, productType } = open;
 
   const handleDropdownClick = (productType) => {
-    toggleDropdown();
-    setCatalog(productType);
+    console.log('fired');
+
+    if (productType == 'eyeglasses') {
+      setCatalog({
+        ...catalog,
+        productType,
+        isEyewear: !catalog.isEyewear,
+        isSunwear: false,
+        isContact: false,
+      });
+    } else if (productType == 'sunglasses') {
+      setCatalog({
+        ...catalog,
+        productType,
+        isEyewear: false,
+        isSunwear: !catalog.isSunwear,
+        isContact: false,
+      });
+    } else {
+      setCatalog({
+        ...catalog,
+        productType,
+        isEyewear: false,
+        isSunwear: false,
+        isContact: !catalog.isContact,
+      });
+    }
   };
 
   return (
@@ -94,11 +125,18 @@ const Header = ({
         </div>
       </div>
 
-      {dropdownMenu ? <EyewearDropdownMenu productType={catalog} /> : null}
+      {dropdownMenu || catalog.isEyewear ? (
+        <EyewearDropdownMenu productType={catalog.productType} />
+      ) : dropdownMenu || catalog.isSunwear ? (
+        <EyewearDropdownMenu productType={catalog.productType} />
+      ) : dropdownMenu || catalog.isContact ? (
+        <ContactLenseDropdownMenu productType={catalog.productType} />
+      ) : null}
     </div>
   );
 };
 
+// <ContactLenseDropdownMenu productType={catalog.productType} />
 // Header.propTypes = {
 //   currentUser: PropTypes.object.isRequired,
 //   hidden: PropTypes.object.isRequired,

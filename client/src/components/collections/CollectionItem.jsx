@@ -3,11 +3,9 @@ import { withRouter } from 'react-router-dom';
 import './collection-item.styles.scss';
 
 const CollectionItem = ({ item, routeName, match, history }) => {
-  // color DTYPE: ARRAY
   // Goal: grab the first whole nested object in each item - IE: first lens option of first color
 
   const { color, model, productType, gender } = item;
-
   const lens = color[0].lens[0];
   const { price, imgUrl, linkUrl } = lens;
 
@@ -22,10 +20,7 @@ const CollectionItem = ({ item, routeName, match, history }) => {
     }
   };
 
-  // () => history.push(`${match.url}${linkUrl}`)
-
   return (
-    //
     <div className='collection-item' onClick={() => handleClick()}>
       <div className='image' style={{ backgroundImage: `url(${imgUrl})` }} />
       <div className='collection-footer'>

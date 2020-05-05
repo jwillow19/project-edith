@@ -2,7 +2,7 @@ import React from 'react';
 import './brands.styles.scss';
 import { Link } from 'react-router-dom';
 
-const Brands = () => {
+const Brands = ({ match, history }) => {
   return (
     <div className='brands-section'>
       <div className='brands-container-title'>DESIGNER BRANDS GO HERE</div>
