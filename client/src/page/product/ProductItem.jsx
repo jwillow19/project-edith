@@ -29,8 +29,6 @@ const ProductItem = ({
   } = item;
   const { brand, productType, material, frameType, shape } = productModel;
 
-  console.log(size);
-
   // @functions   format string functions
   const formatType = productType[0]
     .toUpperCase()
@@ -76,6 +74,7 @@ const ProductItem = ({
             </div>
           </form>
 
+          {console.log(item)}
           <button className='add-cart-btn' onClick={() => addItem(item)}>
             Add to cart
           </button>
@@ -103,6 +102,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItem(item)),
+  addItem: (productItem) => dispatch(addItem(productItem)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ProductItem);

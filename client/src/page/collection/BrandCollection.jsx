@@ -8,6 +8,7 @@ const BrandCollection = ({ match, brandCollection }) => {
   const brand = match.url.split('/').slice(-1)[0];
   //   const formatBrand = brand[0].toUpperCase().concat(brand.substring(1));
   const formatBrand = brand.toUpperCase();
+  console.log(brandCollection);
 
   return (
     <div className='collection-page'>

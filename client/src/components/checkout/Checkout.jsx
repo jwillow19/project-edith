@@ -19,14 +19,15 @@ const Checkout = ({ cartItems, totalPrice }) => {
         <div className='checkout-block'>
           <span>Description</span>
         </div>
-        <div className='checkout-block'>
-          <span>Price</span>
-        </div>
+
         <div className='checkout-block'>
           <span>Quantity</span>
         </div>
         <div className='checkout-block'>
-          <span>Remove</span>
+          <span>Price</span>
+        </div>
+        <div className='checkout-block'>
+          <span>{'  '}</span>
         </div>
       </div>
       {cartItems.map((cartItem) => (

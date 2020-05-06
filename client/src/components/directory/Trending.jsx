@@ -6,11 +6,11 @@ const INITIAL_STATE = {
   x: 0,
   trending: [
     '/images/shop-img/eyeglasses/burberry/BE12821001.png',
-    '/images/shop-img/eyeglasses/dolce/DG13241334.png',
+    '/images/shop-img/eyeglasses/dolce&gabbana/DG13241334.png',
     '/images/shop-img/eyeglasses/versace/VE12641436.png',
     '/images/shop-img/eyeglasses/oakley/OX3222322203.png',
-    '/images/shop-img/sunglasses/BE430738314L.png',
-    '/images/shop-img/sunglasses/RB302500157.png',
+    '/images/shop-img/sunglasses/burberry/BE430738314L.png',
+    '/images/shop-img/sunglasses/rayban/RB302500157.png',
     '/images/shop-img/eyeglasses/prada/PR62UVYEE1O1.png',
   ],
 };
@@ -45,6 +45,7 @@ const TrendingSection = ({ match, history }) => {
 
   const handleMiniImageClick = (e) => {
     let fullPath = e.target.src.split('/').slice(-3).join('/').split('.')[0];
+    // console.log(fullPath);
     fullPath = '/shop/'.concat(fullPath);
     history.push(fullPath);
   };

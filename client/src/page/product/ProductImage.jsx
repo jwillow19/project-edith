@@ -50,6 +50,7 @@ const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
                 style={{ transform: `translateX(${x}%)` }}
               >
                 <img
+                  key={sibling.id}
                   src={sibling.imgUrl}
                   alt='sibling'
                   onClick={(e) => handleMiniImageClick(e)}

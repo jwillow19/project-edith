@@ -91,8 +91,11 @@ const Brands = ({ match, history }) => {
         </div>
 
         <div className='brand-container'>
-          <Link className='brand' to='/shop/dolce'>
-            <img src='/images/designer-brands/dolce.png' alt='dolce'></img>
+          <Link className='brand' to='/shop/dolce&gabbana'>
+            <img
+              src='/images/designer-brands/dolce&gabbana.png'
+              alt='dolce'
+            ></img>
           </Link>
         </div>
 

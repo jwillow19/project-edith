@@ -14,17 +14,8 @@ const GenderCollection = ({
   collection,
   genderedCollection,
 }) => {
-  // console.log(match);
-  // console.log(collection);
-  // console.log(genderedCollection);
-
   const { title, routeName } = collection;
-  console.log(collection);
-  // const { items } = genderedCollection;
-  // <Route
-  //       path={`${match.path}/:collectionId/:productId`}
-  //       component={ProductItem}
-  //     />
+
   return (
     <div className='collection-page'>
       <h2 className='title'>{title}</h2>

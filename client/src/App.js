@@ -32,7 +32,7 @@ import './App.css';
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {
     checkUserSession();
-    // addDocumentToCollection('collections', EYEGLASSES_DATA);
+    // addDocumentToCollection('collections', SUNGLASSES_DATA);
   }, [checkUserSession]);
 
   return (

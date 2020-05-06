@@ -1,12 +1,15 @@
+// @note    util functions checks for the FullModelCode to see if product is in cart
 export const addItemToCart = (cartItems, itemToAdd) => {
   // check if item is in cart - .find() returns item that validation condition to true
-  const itemExist = cartItems.find((cartItem) => cartItem.id === itemToAdd.id);
-
+  const itemExist = cartItems.find(
+    (cartItem) =>
+      cartItem.linkUrl.split('/')[1] === itemToAdd.linkUrl.split('/')[1]
+  );
   // itemExist = null if itemToAdd not in cartItems
   // map each unique, individual item and increase quantity if same item - no duplicates
   if (itemExist) {
     return cartItems.map((cartItem) =>
-      cartItem.id === itemToAdd.id
+      cartItem.linkUrl.split('/')[1] === itemToAdd.linkUrl.split('/')[1]
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
@@ -22,18 +25,20 @@ export const sumQuantity = (cartItems) => {
   return sum;
 };
 
-//removes cartItem instance from cartItems array completely
+//  @note   removes cartItem instance from cartItems array completely
 export const removeItemFromCart = (cartItems, itemToRemove) => {
   const newCartItem = cartItems.filter(
-    (cartItem) => cartItem.id !== itemToRemove.id
+    (cartItem) =>
+      cartItem.linkUrl.split('/')[1] !== itemToRemove.linkUrl.split('/')[1]
   );
   return newCartItem;
 };
 
-//@decrease item quantity by one
+// @note    Using .map() with ternary to loop through array - then modify item quantity
 export const decreaseItemCountByOne = (cartItems, itemToDecrease) => {
   const itemToModify = cartItems.find(
-    (cartItem) => cartItem.id === itemToDecrease.id
+    (cartItem) =>
+      cartItem.linkUrl.split('/')[1] === itemToDecrease.linkUrl.split('/')[1]
   );
   // case: if quantity is 1, remove instance completely from cart
   if (itemToModify.quantity === 1) {
@@ -41,17 +46,17 @@ export const decreaseItemCountByOne = (cartItems, itemToDecrease) => {
   }
   // case: if quantity is >1, map through array, find the matching item, modify the quantity of that item and return the item state
   return cartItems.map((cartItem) =>
-    cartItem.id === itemToDecrease.id
+    cartItem.linkUrl.split('/')[1] === itemToDecrease.linkUrl.split('/')[1]
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
       : { ...cartItem }
   );
 };
 
-//@incrase item quantity by one
+//@note   incrase item quantity by one
 export const IncreaseItemCountByOne = (cartItems, itemToIncrease) => {
   // [NOTE] - map through array, find the matching item, modify the quantity of that item and return the item state
   return cartItems.map((cartItem) =>
-    cartItem.id === itemToIncrease.id
+    cartItem.linkUrl.split('/')[1] === itemToIncrease.linkUrl.split('/')[1]
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
       : { ...cartItem }
   );

@@ -10,8 +10,8 @@ import CollectionPageContainer from '../../page/collection/CollectionPage.contai
 import ProductPageContainer from '../../page/collection/ProductPage.container';
 
 const Shop = ({ match, location, fetchCollectionsStart }) => {
-  console.log('Shop page pickup');
-  console.log(match);
+  // console.log('Shop page pickup');
+  // console.log(match);
   useEffect(() => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);

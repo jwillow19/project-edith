@@ -16,14 +16,16 @@ const CheckoutItem = ({
   decreaseItemCount,
   increaseItemCount,
 }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { model_code, color_code, imgUrl, price, quantity } = cartItem;
+  console.log(cartItem);
+
   return (
     <div className='checkout-item'>
       <div className='image-container'>
-        <img alt='item' src={imageUrl} />
+        <img alt='item' src={imgUrl} />
       </div>
 
-      <span className='name'>{name}</span>
+      <span className='name'>{`${model_code}-${color_code}`}</span>
 
       <span className='quantity'>
         <div className='arrow' onClick={() => decreaseItemCount(cartItem)}>
@@ -35,7 +37,7 @@ const CheckoutItem = ({
         </div>
       </span>
 
-      <span className='price'>${price}</span>
+      <span className='price'>${quantity * price}</span>
 
       <div onClick={() => removeItem(cartItem)}>
         <span className='remove-button'>&#10005;</span>
