@@ -104,17 +104,17 @@ const Footer = () => {
         <div className='social-icons'>
           <ul className='footer__list'>
             <li className='footer__item'>
-              <a href='#'>
+              <a href='/'>
                 <i className='fa fa-facebook'></i>
               </a>
             </li>
             <li className='footer__item'>
-              <a href='#'>
+              <a href='/'>
                 <i className='fa fa-instagram'></i>
               </a>
             </li>
             <li className='footer__item'>
-              <a href='#'>
+              <a href='/'>
                 <i className='fa fa-twitter'></i>
               </a>
             </li>
