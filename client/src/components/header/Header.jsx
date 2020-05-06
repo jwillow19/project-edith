@@ -82,10 +82,6 @@ const Header = ({
         </div>
 
         <div className='options-right'>
-          <Link className='option' to='/shop'>
-            SHOP
-          </Link>
-
           {currentUser ? (
             <div className='option' onClick={() => signOutStart()}>
               SIGN OUT
@@ -129,6 +125,11 @@ const Header = ({
     </div>
   );
 };
+
+// @note  remove Shop page link for now
+// <Link className='option' to='/shop'>
+// SHOP
+// </Link>
 
 const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
