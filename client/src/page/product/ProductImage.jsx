@@ -51,6 +51,7 @@ const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
               >
                 <img
                   src={sibling.imgUrl}
+                  alt='sibling'
                   onClick={(e) => handleMiniImageClick(e)}
                 ></img>
               </div>
