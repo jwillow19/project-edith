@@ -1,0 +1,150 @@
+// MIXINS - refactor this to its own mixin file at a later date
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+// COLOR VARIABLE
+$color-grey-dark: rgb(39, 37, 37);
+$color-grey-dark-2: #999;
+$color-grey-dark-3: rgba(51, 51, 51, 0.774);
+$color-grey-light-1: #f7f7f7;
+$color-white: #fff;
+$color-black: #000;
+
+// GRID VARIABLE
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$gutter-horizontal: 6rem;
+
+.header {
+  height: auto;
+  width: 100%;
+  // NOTE - below 2 lines pushes content and logo as far as possible
+  display: block;
+  justify-content: space-between;
+  // NOTE - pushes anything below header down by 25px
+  margin-bottom: 25px;
+
+  .row {
+    max-width: $grid-width;
+    margin: 0 auto;
+    display: flex;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+      // @include respond(tab-port) {
+      //   margin-bottom: $gutter-vertical-small;
+      // }
+    }
+
+    @include respond(tab-port) {
+      max-width: 80rem;
+      padding: 0 1rem;
+    }
+
+    @include clearfix;
+
+    .nav-links {
+      display: flex;
+      // justify-content: flex-end;
+      // align-items: center;
+      margin: 0 auto;
+      .option {
+        padding: 5px 10px;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__wrapper {
+        padding: 10px;
+      }
+    }
+
+    .options-left {
+      @include respond(tab-port) {
+        // width: 20%;
+        display: none;
+        // padding: 0 3rem;
+      }
+      width: 30%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .option {
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+    }
+
+    .options-center {
+      @include respond(tab-port) {
+        width: 50%;
+        // padding: 0 3rem;
+      }
+      width: 40%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .logo-container {
+        // padding: 10px 15px;
+        cursor: pointer;
+        @include respond(tab-port) {
+          padding: 0 10px;
+        }
+      }
+    }
+
+    .options-right {
+      @include respond(tab-port) {
+        width: 40%;
+        // padding: 0 3rem;
+      }
+      width: 30%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      // NOTE - this keeps options to the end of flex box (right hand side)
+      justify-content: flex-end;
+
+      .option {
+        @include respond(tab-port) {
+          padding: 0 10px;
+        }
+
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
+.trending-section {
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  flex-basis: auto;
+  margin: 20px 0;
+
+  @include respond(tab-port) {
+    padding: 8rem 0;
+  }
+
+  .trending-section-title {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+    margin-top: 20px;
+    color: #000000;
+  }
+
+  .mini-image-slider {
+    // border: 1px solid red;
+    border: none;
+    width: 100%;
+    height: 15vh;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    ul {
+      display: flex;
+      overflow: hidden;
+      .slide {
+        // border: 1px solid blue;
+        border: none;
+        width: 25%;
+        height: 100%;
+
+        img {
+          width: 25vh;
+          height: 15vh;
+        }
+      }
+    }
+
+    %btn-styles {
+      position: absolute;
+      // top: 50%;
+      // transform: translateY(-50%);
+      width: 5%;
+      height: 20vh;
+      background: none;
+      border: none;
+      outline: none;
+      transition: all 0.2s;
+      &:hover {
+        background: rgba($color: #000000, $alpha: 0.3);
+      }
+    }
+    #slideLeft {
+      left: 0;
+      font-size: 50px;
+      @extend %btn-styles;
+    }
+    #slideRight {
+      right: 0;
+      font-size: 50px;
+      @extend %btn-styles;
+    }
+  }
+}
