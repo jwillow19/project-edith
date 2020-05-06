@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './trending.styles.scss';
 
 const INITIAL_STATE = {
@@ -63,7 +63,11 @@ const TrendingSection = ({ match, history }) => {
                 className='slide'
                 style={{ transform: `translateX(${x}%)` }}
               >
-                <img src={item} onClick={(e) => handleMiniImageClick(e)}></img>
+                <img
+                  src={item}
+                  alt='sibling'
+                  onClick={(e) => handleMiniImageClick(e)}
+                ></img>
               </div>
             );
           })}

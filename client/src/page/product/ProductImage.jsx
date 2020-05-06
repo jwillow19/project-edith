@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
 import './product-image.styles.scss';
+// @note    grabs itemSilbing selector from ProductItem parent component and map the individual image
 
 const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
   const { color } = itemSibling;

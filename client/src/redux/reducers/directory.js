@@ -1,7 +1,16 @@
-import { TOGGLE_DROPDOWN } from '../actions/types';
+import {
+  TOGGLE_DROPDOWN,
+  TOGGLE_EYEWEAR,
+  TOGGLE_SUNWEAR,
+  TOGGLE_CONTACTS,
+  CLOSE_DROPDOWN,
+} from '../actions/types';
 
 const initialState = {
   dropdownMenu: false,
+  isEyewear: false,
+  isSunwear: false,
+  isContact: false,
 
   sections: [
     {
@@ -46,6 +55,34 @@ export default function (state = initialState, action) {
       return {
         ...state,
         dropdownMenu: !state.dropdownMenu,
+      };
+    case TOGGLE_EYEWEAR:
+      return {
+        ...state,
+        isEyewear: !state.isEyewear,
+        isSunwear: false,
+        isContact: false,
+      };
+    case TOGGLE_SUNWEAR:
+      return {
+        ...state,
+        isSunwear: !state.isSunwear,
+        isEyewear: false,
+        isContact: false,
+      };
+    case TOGGLE_CONTACTS:
+      return {
+        ...state,
+        isSunwear: false,
+        isEyewear: false,
+        isContact: !state.isContact,
+      };
+    case CLOSE_DROPDOWN:
+      return {
+        ...state,
+        isSunwear: false,
+        isEyewear: false,
+        isContacts: false,
       };
     default:
       return state;

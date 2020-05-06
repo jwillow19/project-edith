@@ -14,13 +14,12 @@ const ProductItem = ({
   // history,
   item,
   productModel,
-  // collection,
   addItem,
   // itemSibling,
   ...otherProps
 }) => {
   const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
-  const { brand, material, shape, frameType, productType } = productModel;
+  const { brand, productType } = productModel;
 
   // @functions   format string functions
   const formatType = productType[0]
@@ -38,7 +37,9 @@ const ProductItem = ({
           {productType === 'sunglasses' ? (
             <h4 className='product-title'>{formatLensColor}</h4>
           ) : null}
-          {polarized ? <img src='/images/polarized.png' /> : null}
+          {polarized ? (
+            <img src='/images/polarized.png' alt='polarize-tag' />
+          ) : null}
 
           <p className='description-text'>
             {' '}

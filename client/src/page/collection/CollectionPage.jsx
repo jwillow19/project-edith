@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import GenderCollection from './GenderCollection';
-import ProductItem from '../product/ProductItem';
 
 const CollectionPage = ({ match }) => {
   // console.log('collectionPage fired');

@@ -13,17 +13,31 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCartHidden } from '../../redux/selectors/cart.selector';
 import { selectCurrentUser } from '../../redux/selectors/user.selector';
-import { selectDropdown } from '../../redux/selectors/directory.selector';
+import {
+  selectDropdown,
+  selectEyewear,
+  selectSunwear,
+  selectContacts,
+} from '../../redux/selectors/directory.selector';
 
 import { signOutStart } from '../../redux/actions/user';
-import { toggleDropdown } from '../../redux/actions/directory';
+import {
+  toggleDropdown,
+  toggleEyewear,
+  toggleSunwear,
+  toggleContacts,
+} from '../../redux/actions/directory';
 
 const Header = ({
   currentUser,
   hidden,
   signOutStart,
-  dropdownMenu,
-  toggleDropdown,
+  isEyewear,
+  isSunwear,
+  isContact,
+  toggleEyewear,
+  toggleSunwear,
+  toggleContacts,
 }) => {
   const [catalog, setCatalog] = useState({
     productType: '',
@@ -31,35 +45,21 @@ const Header = ({
     isSunwear: false,
     isContact: false,
   });
-  // const { eyewearOpen, contactsOpen, productType } = open;
 
   const handleDropdownClick = (productType) => {
     console.log('fired');
-
-    if (productType == 'eyeglasses') {
-      setCatalog({
-        ...catalog,
-        productType,
-        isEyewear: !catalog.isEyewear,
-        isSunwear: false,
-        isContact: false,
-      });
-    } else if (productType == 'sunglasses') {
-      setCatalog({
-        ...catalog,
-        productType,
-        isEyewear: false,
-        isSunwear: !catalog.isSunwear,
-        isContact: false,
-      });
+    setCatalog({
+      ...catalog,
+      productType,
+    });
+    if (productType === 'eyeglasses') {
+      toggleEyewear();
+    } else if (productType === 'sunglasses') {
+      toggleSunwear();
+    } else if (productType === 'contacts') {
+      toggleContacts();
     } else {
-      setCatalog({
-        ...catalog,
-        productType,
-        isEyewear: false,
-        isSunwear: false,
-        isContact: !catalog.isContact,
-      });
+      return;
     }
   };
 
@@ -121,33 +121,30 @@ const Header = ({
           </div>
         </div>
       </div>
-
-      {dropdownMenu || catalog.isEyewear ? (
+      {isEyewear || isSunwear ? (
         <EyewearDropdownMenu productType={catalog.productType} />
-      ) : dropdownMenu || catalog.isSunwear ? (
-        <EyewearDropdownMenu productType={catalog.productType} />
-      ) : dropdownMenu || catalog.isContact ? (
+      ) : isContact ? (
         <ContactLenseDropdownMenu productType={catalog.productType} />
       ) : null}
     </div>
   );
 };
 
-// <ContactLenseDropdownMenu productType={catalog.productType} />
-// Header.propTypes = {
-//   currentUser: PropTypes.object.isRequired,
-//   hidden: PropTypes.object.isRequired,
-// };
-
 const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
   currentUser: selectCurrentUser,
   dropdownMenu: selectDropdown,
+  isEyewear: selectEyewear,
+  isSunwear: selectSunwear,
+  isContact: selectContacts,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
   toggleDropdown: () => dispatch(toggleDropdown()),
+  toggleEyewear: () => dispatch(toggleEyewear()),
+  toggleSunwear: () => dispatch(toggleSunwear()),
+  toggleContacts: () => dispatch(toggleContacts()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

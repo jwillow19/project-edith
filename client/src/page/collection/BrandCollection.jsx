@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './collection.styles.scss';
 import { connect } from 'react-redux';
 import { selectBrandCollection } from '../../redux/selectors/shop.selector';
