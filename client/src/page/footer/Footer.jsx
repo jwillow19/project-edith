@@ -110,12 +110,12 @@ const Footer = () => {
             </li>
             <li className='footer__item'>
               <a href='#'>
-                <i className='fa fa-github'></i>
+                <i className='fa fa-instagram'></i>
               </a>
             </li>
             <li className='footer__item'>
               <a href='#'>
-                <i className='fa fa-linkedin'></i>
+                <i className='fa fa-twitter'></i>
               </a>
             </li>
           </ul>

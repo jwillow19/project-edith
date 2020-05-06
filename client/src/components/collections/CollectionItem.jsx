@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './collection-item.styles.scss';
 
-const CollectionItem = ({ item, routeName, match, history }) => {
+const CollectionItem = ({ item, match, history }) => {
   // Goal: grab the first whole nested object in each item - IE: first lens option of first color
 
   const { color, model, productType, gender } = item;

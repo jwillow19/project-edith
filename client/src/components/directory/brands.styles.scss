@@ -71,6 +71,29 @@
     }
   }
 
+  .brands-container-collapsible {
+    @include respond(tab-port) {
+      width: 100%;
+      text-align: center;
+    }
+    display: none;
+
+    .brand-container {
+      width: 10vw;
+
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px 10px;
+      .brand {
+        img {
+          width: 10vw;
+          height: 15vh;
+        }
+      }
+    }
+  }
+
   .view-more-btn {
     &:link,
     &:visited {

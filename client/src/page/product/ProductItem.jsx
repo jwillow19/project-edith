@@ -18,8 +18,18 @@ const ProductItem = ({
   // itemSibling,
   ...otherProps
 }) => {
-  const { color_code, price, imgUrl, lens_color, model_code, polarized } = item;
-  const { brand, productType } = productModel;
+  const {
+    color_code,
+    price,
+    size,
+    imgUrl,
+    lens_color,
+    model_code,
+    polarized,
+  } = item;
+  const { brand, productType, material, frameType, shape } = productModel;
+
+  console.log(size);
 
   // @functions   format string functions
   const formatType = productType[0]
@@ -41,14 +51,9 @@ const ProductItem = ({
             <img src='/images/polarized.png' alt='polarize-tag' />
           ) : null}
 
-          <p className='description-text'>
-            {' '}
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-            quae ab illo inventore veritatis et quasi architecto beatae vitae
-            dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-            aspernatur aut odit aut fugit, sed quia consequuntur ma
-          </p>
+          <p className='description-text'>Frame Material: {material}</p>
+          <p className='description-text'>{`Frame Shape: ${shape}`}</p>
+          <p className='description-text'>{`Frame Type: ${frameType}`}</p>
         </div>
 
         {/* Image section */}
@@ -63,7 +68,11 @@ const ProductItem = ({
 
           <form>
             <div className='product-size-box'>
-              <button className='size-btn'>SELECT FRAME SIZE</button>
+              {size.map((avaliableSize) => (
+                <button key={avaliableSize} className='size-btn'>
+                  {avaliableSize}
+                </button>
+              ))}
             </div>
           </form>
 

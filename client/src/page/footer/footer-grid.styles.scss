@@ -150,26 +150,44 @@ $gutter-horizontal: 6rem;
       text-align: center;
       margin: 0 auto;
 
+      // &__list {
+      //   list-style: none;
+      // }
+
+      // &__item {
+      //   display: inline-block;
+
+      //   &:not(:last-child) {
+      //     margin-right: 1.5rem;
+      //   }
+      // }
+
       a {
         text-decoration: none;
         display: inline-block;
         border: 1px solid;
         border-radius: 90px;
-        width: 30px;
-        height: 30px;
-        line-height: 70px;
-        background-color: $color-grey-dark-3;
+        width: 40px;
+        height: 40px;
+        background-color: $color-white;
 
         &:hover {
-          background: $color-white;
-          color: $color-grey-dark-3;
+          background: rgb(78, 78, 245);
+          // color: $color-white;
           //   border-color: #129cf3;
           transition: all 0.5s;
         }
         i {
           font-size: 26px;
           text-align: center;
-          color: $color-grey-dark;
+          line-height: 40px;
+          color: $color-black;
+          &:hover {
+            color: $color-white;
+            // color: $color-white;
+            //   border-color: #129cf3;
+            transition: all 0.5s;
+          }
         }
       }
     }

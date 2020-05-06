@@ -58,10 +58,10 @@ const ProductImage = ({ match, history, imageUrl, itemSibling }) => {
           })}
         </ul>
         <button id='slideLeft' onClick={slideLeft}>
-          left
+          &#x2190;
         </button>
         <button id='slideRight' onClick={slideRight}>
-          right
+          &#x2192;
         </button>
       </div>
     </div>

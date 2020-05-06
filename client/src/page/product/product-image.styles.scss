@@ -39,12 +39,14 @@
       .slide {
         // border: 1px solid blue;
         border: none;
-        width: 25%;
+        width: 35%;
         height: 100%;
 
         img {
           width: 25vh;
           height: 15vh;
+          max-width: 100%;
+          max-height: 100%;
         }
       }
     }
@@ -55,6 +57,9 @@
       // transform: translateY(-50%);
       width: 5%;
       height: 20vh;
+      // text-align: center;
+      // align-items: center;
+      font-size: 30px;
       background: none;
       border: none;
       outline: none;

@@ -13,6 +13,10 @@ const EYEGLASSES_DATA = {
       shape: 'clubmaster',
       material: 'plastic/metal',
       frameType: 'full-rim',
+      sizes: [
+        [49, 21, 140],
+        [51, 21, 145],
+      ],
       color: [
         {
           frame_color: 'Shiny Black',
