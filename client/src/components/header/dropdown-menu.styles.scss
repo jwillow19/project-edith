@@ -4,6 +4,19 @@
   height: 500px;
 
   .nav-menu {
+    @media only screen and (max-width: 37.5em) {
+      padding: 0;
+
+      span {
+        font-size: 50px;
+      }
+    }
+    @media only screen and (max-width: 56.25em) {
+      span {
+        font-size: 60px;
+      }
+    } //900px
+
     position: relative;
     width: 100%;
     // top: 38px;
@@ -47,6 +60,19 @@
         width: 50%;
         height: 80%;
         list-style: none;
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
+
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
 
         .nav-link {
           text-align: center;
@@ -54,8 +80,12 @@
           font-size: 60px;
           width: 100%;
           padding-top: 130px;
-
           display: inline-block;
+          @media only screen and (max-width: 37.5em) {
+            span {
+              font-size: 30px;
+            }
+          }
         }
       }
       &__contacts {
@@ -68,14 +98,31 @@
         height: 80%;
         list-style: none;
 
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
+
         .nav-link {
           text-align: center;
           justify-content: center;
           font-size: 60px;
           width: 100%;
           padding-top: 130px;
-
           display: inline-block;
+          @media only screen and (max-width: 37.5em) {
+            span {
+              font-size: 40px;
+            }
+          }
         }
       }
 
@@ -87,6 +134,20 @@
         width: 50%;
         height: 80%;
         list-style: none;
+
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
         .nav-link {
           text-align: center;
           justify-content: center;
@@ -107,6 +168,19 @@
         width: 50%;
         height: 80%;
         list-style: none;
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
         .nav-link {
           text-align: center;
           justify-content: center;
@@ -126,6 +200,20 @@
         width: 50%;
         height: 80%;
         list-style: none;
+
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
         .nav-link {
           color: white;
           text-align: center;
@@ -146,6 +234,20 @@
         width: 50%;
         height: 80%;
         list-style: none;
+
+        @media only screen and (max-width: 56.25em) {
+          padding: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        @media only screen and (max-width: 37.5em) {
+          padding: 0;
+          background-size: cover;
+          // background-repeat: no-repeat;
+          background-position: center;
+        }
         .nav-link {
           color: white;
           text-align: center;

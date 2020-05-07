@@ -1,80 +1,71 @@
-.main-image-container {
-  width: 40%;
-  align-items: center;
-  justify-content: flex-end;
-  flex-direction: column;
+.product-image-large {
+  width: 100%;
+  min-width: 300px;
+  height: auto;
+  display: flex;
+  overflow: hidden;
   flex-basis: auto;
-  // padding: 50px;
+  align-items: center;
 
-  .product-image-large {
+  img {
     width: 100%;
-    min-width: 300px;
     height: auto;
+  }
+}
+
+.mini-image-slider {
+  // border: 1px solid red;
+  border: none;
+  width: 100%;
+  height: 15vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  ul {
     display: flex;
     overflow: hidden;
-    flex-basis: auto;
-    align-items: center;
+    .slide {
+      // border: 1px solid blue;
+      border: none;
+      width: 35%;
+      height: 100%;
 
-    img {
-      width: 100%;
-      height: auto;
+      img {
+        width: 25vh;
+        height: 15vh;
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
   }
 
-  .mini-image-slider {
-    // border: 1px solid red;
+  %btn-styles {
+    position: absolute;
+    // top: 50%;
+    // transform: translateY(-50%);
+    width: 5%;
+    height: 20vh;
+    // text-align: center;
+    // align-items: center;
+    font-size: 30px;
+    background: none;
     border: none;
-    width: 100%;
-    height: 15vh;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    ul {
-      display: flex;
-      overflow: hidden;
-      .slide {
-        // border: 1px solid blue;
-        border: none;
-        width: 35%;
-        height: 100%;
-
-        img {
-          width: 25vh;
-          height: 15vh;
-          max-width: 100%;
-          max-height: 100%;
-        }
-      }
+    outline: none;
+    transition: all 0.2s;
+    &:hover {
+      background: rgba($color: #000000, $alpha: 0.3);
     }
-
-    %btn-styles {
-      position: absolute;
-      // top: 50%;
-      // transform: translateY(-50%);
-      width: 5%;
-      height: 20vh;
-      // text-align: center;
-      // align-items: center;
-      font-size: 30px;
-      background: none;
-      border: none;
-      outline: none;
-      transition: all 0.2s;
-      &:hover {
-        background: rgba($color: #000000, $alpha: 0.3);
-      }
-    }
-    #slideLeft {
-      left: 0;
-      @extend %btn-styles;
-    }
-    #slideRight {
-      right: 0;
-      @extend %btn-styles;
-    }
+  }
+  #slideLeft {
+    left: 0;
+    @extend %btn-styles;
+  }
+  #slideRight {
+    right: 0;
+    @extend %btn-styles;
   }
 }

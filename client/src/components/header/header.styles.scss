@@ -65,7 +65,12 @@ $gutter-horizontal: 6rem;
     }
 
     @include respond(tab-port) {
-      max-width: 80rem;
+      // max-width: 80rem;
+      padding: 0 1rem;
+    }
+
+    @include respond(phone) {
+      // max-width: 80rem;
       padding: 0 1rem;
     }
 
@@ -90,9 +95,7 @@ $gutter-horizontal: 6rem;
 
     .options-left {
       @include respond(tab-port) {
-        // width: 20%;
         display: none;
-        // padding: 0 3rem;
       }
       width: 30%;
       height: auto;
@@ -110,6 +113,11 @@ $gutter-horizontal: 6rem;
         width: 50%;
         // padding: 0 3rem;
       }
+      @include respond(phone) {
+        width: 30%;
+        // padding: 0 3rem;
+        margin-right: 5em;
+      }
       width: 40%;
       height: auto;
       display: flex;
@@ -117,7 +125,6 @@ $gutter-horizontal: 6rem;
       justify-content: center;
 
       .logo-container {
-        // padding: 10px 15px;
         cursor: pointer;
         @include respond(tab-port) {
           padding: 0 10px;
@@ -128,7 +135,11 @@ $gutter-horizontal: 6rem;
     .options-right {
       @include respond(tab-port) {
         width: 40%;
-        // padding: 0 3rem;
+      }
+      @include respond(phone) {
+        width: 40%;
+        // padding: 0, 10px;
+        font-size: 14px;
       }
       width: 30%;
       height: 100%;
@@ -140,6 +151,10 @@ $gutter-horizontal: 6rem;
       .option {
         @include respond(tab-port) {
           padding: 0 10px;
+        }
+        @include respond(phone) {
+          padding-right: 20px;
+          font-size: 14px;
         }
 
         padding: 10px 15px;

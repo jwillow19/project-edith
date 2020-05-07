@@ -82,20 +82,25 @@ $gutter-horizontal: 6rem;
   }
 
   .general-information-row {
-    max-width: $grid-width;
-    margin: 0 auto;
-    display: flex;
+    // max-width: $grid-width;
+    // margin: 0 auto;
+    // display: flex;
+    column-count: 1;
+    column-width: 200px;
 
-    // &:not(:last-child) {
-    //   margin-bottom: $gutter-vertical;
-    //   @include respond(tab-port) {
-    //     margin-bottom: $gutter-vertical-small;
-    //   }
-    // }
+    &:not(:last-child) {
+      margin-bottom: $gutter-vertical;
+      @include respond(tab-port) {
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
 
     @include respond(tab-port) {
       max-width: 80rem;
     }
+    @media only screen and (max-width: 37.5em) {
+      padding: 0;
+    } //600px
 
     @include clearfix;
 
@@ -107,6 +112,10 @@ $gutter-horizontal: 6rem;
         @include respond(tab-port) {
           margin-right: 0;
           margin-bottom: $gutter-vertical-small;
+        }
+        @include respond(phone) {
+          margin-right: 0;
+          margin-bottom: 20px;
         }
       }
       @include respond(tab-port) {
@@ -145,22 +154,8 @@ $gutter-horizontal: 6rem;
 
     @include clearfix;
     .social-icons {
-      // justify-content: center;
-      // align-items: center;
       text-align: center;
       margin: 0 auto;
-
-      // &__list {
-      //   list-style: none;
-      // }
-
-      // &__item {
-      //   display: inline-block;
-
-      //   &:not(:last-child) {
-      //     margin-right: 1.5rem;
-      //   }
-      // }
 
       a {
         text-decoration: none;

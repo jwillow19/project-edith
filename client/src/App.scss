@@ -1,0 +1,27 @@
+/* NOTE - padding: 20px top/bot 60px left/right to body*/
+body {
+  font-family: 'Heebo', sans-serif;
+  padding: 20px 60px;
+
+  @media only screen and (max-width: 37.5em) {
+    padding: 0;
+  } //600px
+  @media only screen and (max-width: 56.25em) {
+    padding: 0;
+  }
+}
+
+/* NOTE - rmeove a-tag underline and set header options to black*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* p {
+  font-weight: 200;
+  font-size: medium;
+} */
+
+* {
+  box-sizing: border-box;
+}

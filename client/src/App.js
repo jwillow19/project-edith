@@ -27,7 +27,7 @@ import { connect } from 'react-redux';
 // import EYEGLASSES_DATA from './page/shop/eyeglasses';
 // import { addDocumentToCollection } from './firebase/db';
 
-import './App.css';
+import './App.scss';
 
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(() => {

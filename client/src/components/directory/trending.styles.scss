@@ -32,6 +32,9 @@
   @include respond(tab-port) {
     padding: 8rem 0;
   }
+  @media only screen and (max-width: 37.5em) {
+    padding: 40px;
+  }
 
   .trending-section-title {
     display: -webkit-flex;
@@ -56,11 +59,16 @@
     align-items: center;
     position: relative;
 
+    // @media only screen and (max-width: 56.25em) {
+    //   width: 100%;
+    //   // max-width: 200px;
+    // }
+
     ul {
       display: flex;
       overflow: hidden;
+
       .slide {
-        // border: 1px solid blue;
         border: none;
         width: 25%;
         height: 100%;
@@ -68,6 +76,10 @@
         img {
           width: 25vh;
           height: 15vh;
+          @media only screen and (max-width: 37.5em) {
+            width: 100%;
+            margin-right: 150px;
+          }
         }
       }
     }

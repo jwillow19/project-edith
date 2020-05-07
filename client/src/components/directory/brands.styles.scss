@@ -56,8 +56,11 @@
       text-align: center;
     }
     .brand-container {
-      width: 10vw;
+      @media only screen and (max-width: 37.5em) {
+        width: 40%;
+      }
 
+      width: 10vw;
       display: inline-flex;
       justify-content: center;
       align-items: center;
@@ -66,6 +69,9 @@
         img {
           width: 10vw;
           height: 15vh;
+          @media only screen and (max-width: 37.5em) {
+            width: 100%;
+          }
         }
       }
     }
@@ -80,7 +86,6 @@
 
     .brand-container {
       width: 10vw;
-
       display: inline-flex;
       justify-content: center;
       align-items: center;

@@ -9,21 +9,21 @@ const EyewearDropdownMenu = ({ productType, closeDropdown }) => {
     <div className='nav-wrapper'>
       <ul className='nav-menu'>
         <div
-          onClick={() => closeDropdown()}
+          onClick={closeDropdown}
           className={`nav-menu__list-item__men-${productType}`}
         >
           <Link className='nav-link' to={`/shop/${productType}/men`}>
             <span>Shop Men</span>
           </Link>
         </div>
-        <li
+        <div
           onClick={closeDropdown}
           className={`nav-menu__list-item__women-${productType}`}
         >
           <Link className='nav-link' to={`/shop/${productType}/women`}>
             <span>Shop Women</span>
           </Link>
-        </li>
+        </div>
       </ul>
     </div>
   );

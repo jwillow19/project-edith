@@ -13,7 +13,7 @@ const Brands = ({ match, history }) => {
 
   return (
     <div className='brands-section'>
-      <div className='brands-container-title'>DESIGNER BRANDS GO HERE</div>
+      <div className='brands-container-title'>Our Designer Brands</div>
       <div className='brands-container-wrapper'>
         <div className='brand-container'>
           <Link className='brand' to='/shop/rayban'>
