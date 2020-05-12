@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: ./
+    image: jwillow19/edith-backend
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./:/usr/app
+
+  client:
+    build:
+      context: ./client/
+    image: jwillow19/project-edith
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    links:
+      - server
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server

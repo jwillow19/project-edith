@@ -12,7 +12,7 @@ const StripeButton = ({ price }) => {
     console.log(token);
     // axios post-req to backend with payment information
     axios({
-      url: 'http://localhost:5000/payment',
+      url: '/payment',
       method: 'post',
       data: {
         amount: priceInCent,
